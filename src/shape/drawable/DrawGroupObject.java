@@ -4,14 +4,15 @@ package shape.drawable;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 import shape.editable.EditableShape;
 
 public class DrawGroupObject extends EditableShape implements DrawableObject {
 	private LinkedList<EditableShape> objList;
 
-	DrawGroupObject(LinkedList<EditableShape> objList){
+	public DrawGroupObject(LinkedList<EditableShape> objList){
 		this.objList = new LinkedList<EditableShape>();
 		this.objList.addAll(objList);
 	}

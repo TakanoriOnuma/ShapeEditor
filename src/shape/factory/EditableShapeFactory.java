@@ -1,6 +1,6 @@
 package shape.factory;
 
-import java.util.*;
+import java.util.LinkedList;
 
 import shape.editable.EditableShape;
 
@@ -9,7 +9,7 @@ public abstract class EditableShapeFactory {
 	public static EditableShapeFactory getFactory(String maker){
 		EditableShapeFactory ret;
 		try{
-			Class<?> c = Class.forName("sample4." + maker + "Factory");		// �p�b�P�[�W�����܂߂��N���X��
+			Class<?> c = Class.forName("shape.factory." + maker + "Factory");		// �p�b�P�[�W�����܂߂��N���X��
 			ret = (EditableShapeFactory)c.newInstance();
 		}
 		catch(Exception e){

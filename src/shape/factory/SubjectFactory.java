@@ -2,11 +2,9 @@ package shape.factory;
 
 
 import java.util.LinkedList;
-import sample.MyPoint;
-import shape.drawable.DrawOvalObject;
-import shape.drawable.DrawRectangleObject;
-import shape.drawable.DrawTriangleObject;
-import shape.editable.EditableShape;
+
+import shape.editable.*;
+import shape.drawable.*;
 
 public class SubjectFactory extends EditableShapeFactory {
 

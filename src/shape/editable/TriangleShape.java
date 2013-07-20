@@ -1,7 +1,5 @@
 package shape.editable;
 
-import sample.MyPoint;
-
 public class TriangleShape extends EditableShape {
 	protected MyPoint[] pt = new MyPoint[3];
 

@@ -1,14 +1,18 @@
 package editor;
 
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-import sample.MyPoint;
 import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.editable.EditableShape;
+import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
 import window.DisplayWindow;
 

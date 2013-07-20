@@ -8,7 +8,7 @@ import shape.editable.OvalShape;
 public class DrawOvalObject extends OvalShape implements DrawableObject {
 	private Color color;
 
-	DrawOvalObject(double x, double y, double width, double height){
+	public DrawOvalObject(double x, double y, double width, double height){
 		super(x, y, width, height);
 		color = Color.gray;
 	}

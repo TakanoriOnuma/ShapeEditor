@@ -1,8 +1,9 @@
 package shape.drawable;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
-import sample.MyPoint;
+import shape.editable.MyPoint;
 import shape.editable.TriangleShape;
 
 public class DrawTriangleObject extends TriangleShape implements DrawableObject {

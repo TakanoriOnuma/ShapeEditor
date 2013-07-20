@@ -1,11 +1,14 @@
 package window;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import shape.drawable.DrawableObject;
-
-import java.util.*;
 
 public class DisplayWindow extends JFrame {
 	/**
@@ -16,8 +19,8 @@ public class DisplayWindow extends JFrame {
 	private MyPanel myPanel;
 	private LinkedList<?> objList;		// �G�悷��}�`�z��ւ̎Q��
 
-	DisplayWindow(LinkedList<?> objList) {
-		super("Shape �\��");
+	public DisplayWindow(LinkedList<?> objList) {
+		super("Shape 表示");
 		this.objList = objList;
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

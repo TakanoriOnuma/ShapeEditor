@@ -8,7 +8,7 @@ public class RectangleShape extends EditableShape {
 	protected double width;		// ��`�̕�
 	protected double height;	// ��`�̍���
 
-	RectangleShape(double x, double y, double width, double height) {
+	public RectangleShape(double x, double y, double width, double height) {
 		super();
 		this.x = x;
 		this.y = y;
