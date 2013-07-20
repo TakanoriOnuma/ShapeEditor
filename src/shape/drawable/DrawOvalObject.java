@@ -14,6 +14,14 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 		super(x, y, width, height);
 		drawer = new FillDrawer(Color.blue);
 	}
+	public DrawOvalObject(double x, double y, double width, double height, Drawer drawer){
+		super(x, y, width, height);
+		this.drawer = drawer;
+	}
+
+	public void setDrawer(Drawer drawer){
+		this.drawer = drawer;
+	}
 
 	@Override
 	public void draw(Graphics g) {

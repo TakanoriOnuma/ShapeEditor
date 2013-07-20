@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import shape.drawer.Drawer;
-import shape.drawer.LineDrawer;
+import shape.drawer.FillDrawer;
 import shape.editable.RectangleShape;
 
 public class DrawRectangleObject extends RectangleShape implements DrawableObject {
@@ -12,9 +12,16 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 
 	public DrawRectangleObject(double x, double y, double width, double height){
 		super(x, y, width, height);
-		drawer = new LineDrawer(Color.green);
+		drawer = new FillDrawer(Color.green);
+	}
+	public DrawRectangleObject(double x, double y, double width, double height, Drawer drawer){
+		super(x, y, width, height);
+		this.drawer = drawer;
 	}
 
+	public void setDrawer(Drawer drawer){
+		this.drawer = drawer;
+	}
 
 	@Override
 	public void draw(Graphics g) {

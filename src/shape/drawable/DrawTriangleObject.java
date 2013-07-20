@@ -15,6 +15,14 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 		super(pt1, pt2, pt3);
 		drawer = new FillDrawer(Color.red);
 	}
+	public DrawTriangleObject(MyPoint pt1, MyPoint pt2, MyPoint pt3, Drawer drawer){
+		super(pt1, pt2, pt3);
+		this.drawer = drawer;
+	}
+
+	public void setDrawer(Drawer drawer){
+		this.drawer = drawer;
+	}
 
 	@Override
 	public void draw(Graphics g) {
