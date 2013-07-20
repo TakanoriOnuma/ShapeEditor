@@ -1,6 +1,7 @@
 package shape.drawable;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
 import shape.editable.RectangleShape;
 
@@ -9,13 +10,13 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 
 	public DrawRectangleObject(double x, double y, double width, double height){
 		super(x, y, width, height);
-		color = Color.gray;			// �f�t�H���g�Őݒ�
+		color = Color.gray;			// デフォルトで設定
 	}
 
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, (int)width, (int)height);
 		g.setColor(Color.black);
@@ -24,7 +25,7 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 
 	@Override
 	public void setColor(Color color) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		this.color = color;
 	}
 

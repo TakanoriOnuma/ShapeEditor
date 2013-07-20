@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import shape.editable.EditableShape;
 
 public abstract class EditableShapeFactory {
-	// ��� Factory �𐶐����郁�\�b�h
+	// 具象 Factory を生成するメソッド
 	public static EditableShapeFactory getFactory(String maker){
 		EditableShapeFactory ret;
 		try{

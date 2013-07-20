@@ -15,7 +15,7 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		g.setColor(color);
 		g.fillOval((int)x, (int)y, (int)width, (int)height);
 		g.setColor(Color.black);
@@ -24,7 +24,7 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 
 	@Override
 	public void setColor(Color color) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		this.color = color;
 	}
 

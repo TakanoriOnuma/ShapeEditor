@@ -3,8 +3,8 @@ package shape.editable;
 public class TriangleShape extends EditableShape {
 	protected MyPoint[] pt = new MyPoint[3];
 
-	// �O�p�`��3���_���E���œ�͂���(���F�E�B���h�E���W��ł͍����)
-	// ������̓_�͓�͂���Ȃ����Ƃ����肵�Ă���
+	// 三角形の3つ頂点を右回りで入力する(注：ウィンドウ座標上では左回り)
+	// 同一線上の点は入力されないことを仮定している
 	public TriangleShape(MyPoint pt1, MyPoint pt2, MyPoint pt3) {
 		super();
 		pt[0] = pt1;
@@ -15,7 +15,7 @@ public class TriangleShape extends EditableShape {
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
 		boolean ret = true;
-		// �_��3�ӂ̉E���x�N�g���̂ǂꂩ�ɑ΂��āA���Ɍ����Ă���ΊO�̓_�ɂȂ�
+		// 点が3辺の右回りベクトルのどれかに対して、左に見えていれば外の点になる
 		for(int i = 0; i < pt.length; i++) {
 			if((pt[(i + 1) % 3].getY() - pt[i].getY()) * (xpos - pt[i].getX()) <
 					(ypos - pt[i].getY()) * (pt[(i + 1) % 3].getX() - pt[i].getX())) {
@@ -27,7 +27,7 @@ public class TriangleShape extends EditableShape {
 
 	@Override
 	public void move(double dx, double dy) {
-		// �w�肵�������̈ړ�������
+		// 指定した差分の移動をする
 		for(int i = 0; i < pt.length; i++) {
 			pt[i].move(dx, dy);
 		}

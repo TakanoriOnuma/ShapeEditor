@@ -17,7 +17,7 @@ public class DisplayWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private MyPanel myPanel;
-	private LinkedList<?> objList;		// �G�悷��}�`�z��ւ̎Q��
+	private LinkedList<?> objList;		// 描画する図形配列への参照
 
 	public DisplayWindow(LinkedList<?> objList) {
 		super("Shape 表示");
@@ -27,15 +27,15 @@ public class DisplayWindow extends JFrame {
 		setSize(200, 200);
 		myPanel = new MyPanel();
 		add(myPanel, BorderLayout.CENTER);
-		setVisible(true);		// �E�B���h�E�̕\��
+		setVisible(true);		// ウィンドウの表示
 	}
 
 	public void invisible(){
-		setVisible(false);		// �E�B���h�E�̔�\��
+		setVisible(false);		// ウィンドウの非表示
 	}
 
 	public void drawAll(){
-		myPanel.repaint();		// �E�B���h�E�̍ĊG�� (MyPanel �� paint �̌Ăяo��)
+		myPanel.repaint();		// ウィンドウの再絵画 (MyPanel の paint の呼び出し)
 	}
 
 	public class MyPanel extends JPanel {

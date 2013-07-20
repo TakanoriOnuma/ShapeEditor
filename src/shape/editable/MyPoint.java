@@ -24,8 +24,8 @@ public class MyPoint {
 	}
 
 	public double getTheta(){
-		double theta = Math.atan2(y, x);		// atan�����߂�
-		theta = Math.toDegrees(theta);			// �p�x�� ���ɒ���
+		double theta = Math.atan2(y, x);		// atanを求める
+		theta = Math.toDegrees(theta);			// 角度を °に直す
 		return theta;
 	}
 

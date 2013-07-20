@@ -16,7 +16,7 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		int[] xint = new int[3];
 		int[] yint = new int[3];
 		for(int i = 0; i < 3; i++){
@@ -31,7 +31,7 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 
 	@Override
 	public void setColor(Color color) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		this.color = color;
 	}
 }

@@ -17,9 +17,9 @@ import shape.factory.EditableShapeFactory;
 import window.DisplayWindow;
 
 public class Editor {
-	static List<EditableShape> shapeList;		// �}�`�v�f��ێ�����z��
-	static DisplayWindow myWindow;				// shapeList �̕\���p�E�B���h�E
-	static EditableShapeFactory f;				// ���I�Ɍ��肷�鐶���H��̃C���X�^���X
+	static List<EditableShape> shapeList;		// 図形要素を保持する配列
+	static DisplayWindow myWindow;				// shapeList の表示用ウィンドウ
+	static EditableShapeFactory f;				// 動的に決定する生成工場のインスタンス
 
 	/**
 	 * @param args
@@ -43,8 +43,8 @@ public class Editor {
 			System.exit(-1);
 		}
 
-		shapeList = f.create();			// �}�`�v�f�̔z��𐶐�
-		show();							// �}�`�v�f�����ɕ\��
+		shapeList = f.create();			// 図形要素の配列を生成
+		show();							// 図形要素を順に表示
 		myWindow = new DisplayWindow((LinkedList<?>)shapeList);
 		myWindow.drawAll();
 
@@ -86,21 +86,21 @@ public class Editor {
 			return ec;
 		}
 
-		ec.token = str.split(" ");		// str��' '�ŕ���
+		ec.token = str.split(" ");		// strを' 'で分割
 		if(ec.token.length == 3){
 			try{
-				// ��1��� x �ɑ�2��� y ��Double�Ƃ��ēǂݍ���
+				// 第1引数を x に第2引数を y にDoubleとして読み込む
 				ec.x = Double.parseDouble(ec.token[1]);
 				ec.y = Double.parseDouble(ec.token[2]);
 			}
 			catch(NumberFormatException e){
-				// ��1�Ƒ�2��Double�Ƃ��ĉ��߂ł��Ȃ��ꍇ
+				// 第1と第2引数がDoubleとして解釈できない場合
 				ec.command = CommandType.ERROR;
 				System.out.println("Double values needed: " + ec.token[0]);
 				return ec;
 			}
 
-			// ����R�}���h"select"��"move"�𑀍�R�}���h�Ƃ���
+			// 操作コマンド"select"と"move"を操作コマンドとする
 			if(ec.token[0].equals("select") == true){
 				ec.command = CommandType.SELECT;
 			}
@@ -160,7 +160,7 @@ public class Editor {
 
 		case SELECT:
 			System.out.println("select: " + ec.x + ", " + ec.y);
-			// x y �Ŏw�肵�����W�ʒu�ɁA�ŏ��ɑ��݂���}�`��I��
+			// x y で指定した座標位置に、最初に存在する図形を選択
 			for(EditableShape item : shapeList){
 				if(item.isIncluding(ec.x, ec.y) == true){
 					if(item.isSelected() == true){
@@ -251,8 +251,8 @@ public class Editor {
 
 		case UNGROUP:
 			it = shapeList.iterator();
-			// �I���O���[�v�v�f�̕ێ�����v�f��addList�ɓ��
-			// shapeList����O���B�Ō��addList��shapeList�̐擪�ɑ}��
+			// 選択グループ要素の保持する要素をaddListに入れ
+			// shapeListから外す。最後にaddListをshapeListの先頭に挿入
 			while(it.hasNext()){
 				EditableShape item = it.next();
 				if(item.isSelected() == true && item.isGroupObject() == true){

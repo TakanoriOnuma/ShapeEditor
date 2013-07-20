@@ -17,7 +17,7 @@ public class OvalShape extends EditableShape{
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		double a = width / 2;
 		double b = height / 2;
 		double x = (this.x + a) - xpos;
@@ -27,13 +27,13 @@ public class OvalShape extends EditableShape{
 	}
 	@Override
 	public void move(double dx, double dy) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		x += dx;
 		y += dy;
 	}
 	@Override
 	public void show() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		System.out.println("Oval(" + isSelected() + "): (" +
 			x + ", " + y + ") (" + (x + width) + ", " + (y + height) + ")");
 	}

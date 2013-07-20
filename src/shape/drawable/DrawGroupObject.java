@@ -27,10 +27,10 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		ListIterator<EditableShape> it = objList.listIterator(objList.size());
 		while(it.hasPrevious() == true){
-			// EditableShape �� DrawableObject�Ƃ��Ĉ���
+			// EditableShape を DrawableObjectとして扱う
 			DrawableObject obj = (DrawableObject)it.previous();
 			obj.draw(g);
 		}
@@ -38,9 +38,9 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void setColor(Color color) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		for(EditableShape item : objList){
-			// EditableShape �� DrawableObject�Ƃ��Ĉ���
+			// EditableShape を DrawableObjectとして扱う
 			DrawableObject drawable = (DrawableObject)item;
 			drawable.setColor(color);
 		}
@@ -48,7 +48,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		boolean ret = false;
 		for(EditableShape item : objList){
 			if(item.isIncluding(xpos, ypos) == true){
@@ -61,7 +61,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void move(double dx, double dy) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		for(EditableShape item : objList){
 			item.move(dx, dy);
 		}
@@ -69,13 +69,13 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void show() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		show(0);
 	}
 	private void show(int level){
 		String indent = "";
 		for(int i = 0; i < level; i++){
-			indent += "  ";		// ���x���i����������
+			indent += "  ";		// レベル段数分字下げ
 		}
 		System.out.println(indent + "Group(" + isSelected() + "):");
 		for(EditableShape item : objList){
@@ -84,7 +84,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 				go.show(level + 1);
 			}
 			else{
-				System.out.print(indent + "  ");		// ���x�� + 1�i������
+				System.out.print(indent + "  ");		// レベル + 1段字下げ
 				item.show();
 			}
 		}

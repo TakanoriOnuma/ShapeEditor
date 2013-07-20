@@ -3,14 +3,17 @@ package shape.factory;
 
 import java.util.LinkedList;
 
-import shape.editable.*;
-import shape.drawable.*;
+import shape.drawable.DrawOvalObject;
+import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawTriangleObject;
+import shape.editable.EditableShape;
+import shape.editable.MyPoint;
 
 public class SubjectFactory extends EditableShapeFactory {
 
 	@Override
 	public EditableShape createShape(String[] token) {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		EditableShape shape = null;
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
@@ -28,7 +31,7 @@ public class SubjectFactory extends EditableShapeFactory {
 
 	@Override
 	public LinkedList<EditableShape> create() {
-		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		// TODO 自動生成されたメソッド・スタブ
 		LinkedList<EditableShape> shapeList = new LinkedList<EditableShape>();
 		shapeList.add(new DrawRectangleObject(0, 0, 10, 10));
 		shapeList.add(new DrawRectangleObject(20, 20, 20, 10));

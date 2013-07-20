@@ -1,8 +1,9 @@
 package shape.drawable;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public interface DrawableObject {
-	public void draw(Graphics g);			// �}�`�̃E�B���h�E��ւ̊G��
-	public void setColor(Color color);		// �}�`��h��Ԃ��F�̐ݒ�
+	public void draw(Graphics g);			// 図形のウィンドウ上への描画
+	public void setColor(Color color);		// 図形を塗りつぶす色の設定
 }

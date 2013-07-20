@@ -3,10 +3,10 @@ package shape.editable;
 
 
 public class RectangleShape extends EditableShape {
-	protected double x;			// ���㒸�_�� x ���W�l
-	protected double y;			// ���㒸�_�� y ���W�l
-	protected double width;		// ��`�̕�
-	protected double height;	// ��`�̍���
+	protected double x;			// 左上頂点の x 座標値
+	protected double y;			// 左上頂点の y 座標値
+	protected double width;		// 矩形の幅
+	protected double height;	// 矩形の高さ
 
 	public RectangleShape(double x, double y, double width, double height) {
 		super();
