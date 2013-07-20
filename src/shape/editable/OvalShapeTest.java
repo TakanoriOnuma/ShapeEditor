@@ -1,8 +1,9 @@
-package sample4;
+package shape.editable;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 
 public class OvalShapeTest {
 

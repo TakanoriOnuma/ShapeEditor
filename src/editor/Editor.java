@@ -1,14 +1,21 @@
-package sample4;
+package editor;
+
 
 import java.io.*;
 import java.util.*;
 
 import sample.MyPoint;
+import shape.drawable.DrawGroupObject;
+import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawTriangleObject;
+import shape.editable.EditableShape;
+import shape.factory.EditableShapeFactory;
+import window.DisplayWindow;
 
 public class Editor {
-	static List<EditableShape> shapeList;		// }Œ`—v‘f‚ğ•Û‚·‚é”z—ñ
-	static DisplayWindow myWindow;				// shapeList ‚Ì•\¦—pƒEƒBƒ“ƒhƒE
-	static EditableShapeFactory f;				// “®“I‚ÉŒˆ’è‚·‚é¶¬Hê‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+	static List<EditableShape> shapeList;		// ï¿½}ï¿½`ï¿½vï¿½fï¿½ï¿½Ûï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½
+	static DisplayWindow myWindow;				// shapeList ï¿½Ì•\ï¿½ï¿½ï¿½pï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½E
+	static EditableShapeFactory f;				// ï¿½ï¿½ï¿½Iï¿½ÉŒï¿½ï¿½è‚·ï¿½é¶ï¿½ï¿½ï¿½Hï¿½ï¿½ÌƒCï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½X
 
 	/**
 	 * @param args
@@ -32,8 +39,8 @@ public class Editor {
 			System.exit(-1);
 		}
 
-		shapeList = f.create();			// }Œ`—v‘f‚Ì”z—ñ‚ğ¶¬
-		show();							// }Œ`—v‘f‚ğ‡‚É•\¦
+		shapeList = f.create();			// ï¿½}ï¿½`ï¿½vï¿½fï¿½Ì”zï¿½ï¿½ğ¶ï¿½
+		show();							// ï¿½}ï¿½`ï¿½vï¿½fï¿½ï¿½ï¿½ï¿½ï¿½É•\ï¿½ï¿½
 		myWindow = new DisplayWindow((LinkedList<?>)shapeList);
 		myWindow.drawAll();
 
@@ -75,21 +82,21 @@ public class Editor {
 			return ec;
 		}
 
-		ec.token = str.split(" ");		// str‚ğ' '‚Å•ªŠ„
+		ec.token = str.split(" ");		// strï¿½ï¿½' 'ï¿½Å•ï¿½ï¿½ï¿½
 		if(ec.token.length == 3){
 			try{
-				// ‘æ1ˆø”‚ğ x ‚É‘æ2ˆø”‚ğ y ‚ÉDouble‚Æ‚µ‚Ä“Ç‚İ‚Ş
+				// ï¿½ï¿½1ï¿½ï¿½ï¿½ x ï¿½É‘ï¿½2ï¿½ï¿½ï¿½ y ï¿½ï¿½Doubleï¿½Æ‚ï¿½ï¿½Ä“Ç‚İï¿½ï¿½ï¿½
 				ec.x = Double.parseDouble(ec.token[1]);
 				ec.y = Double.parseDouble(ec.token[2]);
 			}
 			catch(NumberFormatException e){
-				// ‘æ1‚Æ‘æ2ˆø”‚ªDouble‚Æ‚µ‚Ä‰ğß‚Å‚«‚È‚¢ê‡
+				// ï¿½ï¿½1ï¿½Æ‘ï¿½2ï¿½ï¿½Doubleï¿½Æ‚ï¿½ï¿½Ä‰ï¿½ï¿½ß‚Å‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 				ec.command = CommandType.ERROR;
 				System.out.println("Double values needed: " + ec.token[0]);
 				return ec;
 			}
 
-			// ‘€ìƒRƒ}ƒ“ƒh"select"‚Æ"move"‚ğ‘€ìƒRƒ}ƒ“ƒh‚Æ‚·‚é
+			// ï¿½ï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h"select"ï¿½ï¿½"move"ï¿½ğ‘€ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½Æ‚ï¿½ï¿½ï¿½
 			if(ec.token[0].equals("select") == true){
 				ec.command = CommandType.SELECT;
 			}
@@ -149,7 +156,7 @@ public class Editor {
 
 		case SELECT:
 			System.out.println("select: " + ec.x + ", " + ec.y);
-			// x y ‚Åw’è‚µ‚½À•WˆÊ’u‚ÉAÅ‰‚É‘¶İ‚·‚é}Œ`‚ğ‘I‘ğ
+			// x y ï¿½Åwï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Ê’uï¿½ÉAï¿½Åï¿½ï¿½É‘ï¿½ï¿½İ‚ï¿½ï¿½ï¿½}ï¿½`ï¿½ï¿½Iï¿½ï¿½
 			for(EditableShape item : shapeList){
 				if(item.isIncluding(ec.x, ec.y) == true){
 					if(item.isSelected() == true){
@@ -240,8 +247,8 @@ public class Editor {
 
 		case UNGROUP:
 			it = shapeList.iterator();
-			// ‘I‘ğƒOƒ‹[ƒv—v‘f‚Ì•Û‚·‚é—v‘f‚ğaddList‚É“ü‚ê
-			// shapeList‚©‚çŠO‚·BÅŒã‚ÉaddList‚ğshapeList‚Ìæ“ª‚É‘}“ü
+			// ï¿½Iï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½vï¿½vï¿½fï¿½Ì•Ûï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½addListï¿½É“ï¿½ï¿½
+			// shapeListï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Bï¿½ÅŒï¿½ï¿½addListï¿½ï¿½shapeListï¿½Ìæ“ªï¿½É‘}ï¿½ï¿½
 			while(it.hasNext()){
 				EditableShape item = it.next();
 				if(item.isSelected() == true && item.isGroupObject() == true){

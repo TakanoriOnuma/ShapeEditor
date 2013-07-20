@@ -1,14 +1,19 @@
-package sample4;
+package shape.factory;
+
 
 import java.awt.Color;
 import java.util.LinkedList;
 import sample.MyPoint;
+import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawTriangleObject;
+import shape.drawable.DrawableObject;
+import shape.editable.EditableShape;
 
 public class Sample1Factory extends EditableShapeFactory {
 
 	@Override
 	public EditableShape createShape(String[] token) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		EditableShape shape = null;
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
@@ -40,7 +45,7 @@ public class Sample1Factory extends EditableShapeFactory {
 
 	@Override
 	public LinkedList<EditableShape> create() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		LinkedList<EditableShape> shapeList = new LinkedList<EditableShape>();
 		shapeList.add(new DrawRectangleObject(0, 0, 20, 20));
 		shapeList.add(new DrawRectangleObject(100, 100, 20, 20));

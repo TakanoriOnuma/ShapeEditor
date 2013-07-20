@@ -1,7 +1,9 @@
-package sample4;
+package shape.drawable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import shape.editable.OvalShape;
 
 public class DrawOvalObject extends OvalShape implements DrawableObject {
 	private Color color;
@@ -13,7 +15,7 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		g.setColor(color);
 		g.fillOval((int)x, (int)y, (int)width, (int)height);
 		g.setColor(Color.black);
@@ -22,7 +24,7 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 
 	@Override
 	public void setColor(Color color) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		this.color = color;
 	}
 

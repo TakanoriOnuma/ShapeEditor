@@ -1,13 +1,15 @@
-package sample4;
+package shape.factory;
 
 import java.util.*;
 
+import shape.editable.EditableShape;
+
 public abstract class EditableShapeFactory {
-	// ‹ïÛ Factory ‚ğ¶¬‚·‚éƒƒ\ƒbƒh
+	// ï¿½ï¿½ï¿½ Factory ï¿½ğ¶ï¿½ï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
 	public static EditableShapeFactory getFactory(String maker){
 		EditableShapeFactory ret;
 		try{
-			Class<?> c = Class.forName("sample4." + maker + "Factory");		// ƒpƒbƒP[ƒW–¼‚àŠÜ‚ß‚½ƒNƒ‰ƒX–¼
+			Class<?> c = Class.forName("sample4." + maker + "Factory");		// ï¿½pï¿½bï¿½Pï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ß‚ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½
 			ret = (EditableShapeFactory)c.newInstance();
 		}
 		catch(Exception e){

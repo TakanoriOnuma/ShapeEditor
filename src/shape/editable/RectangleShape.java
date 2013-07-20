@@ -1,10 +1,12 @@
-package sample4;
+package shape.editable;
+
+
 
 public class RectangleShape extends EditableShape {
-	protected double x;			// ¶ã’¸“_‚Ì x À•W’l
-	protected double y;			// ¶ã’¸“_‚Ì y À•W’l
-	protected double width;		// ‹éŒ`‚Ì•
-	protected double height;	// ‹éŒ`‚Ì‚‚³
+	protected double x;			// ï¿½ï¿½ï¿½ã’¸ï¿½_ï¿½ï¿½ x ï¿½ï¿½ï¿½Wï¿½l
+	protected double y;			// ï¿½ï¿½ï¿½ã’¸ï¿½_ï¿½ï¿½ y ï¿½ï¿½ï¿½Wï¿½l
+	protected double width;		// ï¿½ï¿½`ï¿½Ì•ï¿½
+	protected double height;	// ï¿½ï¿½`ï¿½Ìï¿½ï¿½ï¿½
 
 	RectangleShape(double x, double y, double width, double height) {
 		super();

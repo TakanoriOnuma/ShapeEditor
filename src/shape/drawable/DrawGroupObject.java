@@ -1,9 +1,12 @@
-package sample4;
+package shape.drawable;
+
 
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.*;
+
+import shape.editable.EditableShape;
 
 public class DrawGroupObject extends EditableShape implements DrawableObject {
 	private LinkedList<EditableShape> objList;
@@ -23,10 +26,10 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		ListIterator<EditableShape> it = objList.listIterator(objList.size());
 		while(it.hasPrevious() == true){
-			// EditableShape ‚ğ DrawableObject‚Æ‚µ‚Äˆµ‚¤
+			// EditableShape ï¿½ï¿½ DrawableObjectï¿½Æ‚ï¿½ï¿½Äˆï¿½ï¿½ï¿½
 			DrawableObject obj = (DrawableObject)it.previous();
 			obj.draw(g);
 		}
@@ -34,9 +37,9 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void setColor(Color color) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		for(EditableShape item : objList){
-			// EditableShape ‚ğ DrawableObject‚Æ‚µ‚Äˆµ‚¤
+			// EditableShape ï¿½ï¿½ DrawableObjectï¿½Æ‚ï¿½ï¿½Äˆï¿½ï¿½ï¿½
 			DrawableObject drawable = (DrawableObject)item;
 			drawable.setColor(color);
 		}
@@ -44,7 +47,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		boolean ret = false;
 		for(EditableShape item : objList){
 			if(item.isIncluding(xpos, ypos) == true){
@@ -57,7 +60,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void move(double dx, double dy) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		for(EditableShape item : objList){
 			item.move(dx, dy);
 		}
@@ -65,13 +68,13 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 
 	@Override
 	public void show() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		show(0);
 	}
 	private void show(int level){
 		String indent = "";
 		for(int i = 0; i < level; i++){
-			indent += "  ";		// ƒŒƒxƒ‹’i”•ªš‰º‚°
+			indent += "  ";		// ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		System.out.println(indent + "Group(" + isSelected() + "):");
 		for(EditableShape item : objList){
@@ -80,7 +83,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 				go.show(level + 1);
 			}
 			else{
-				System.out.print(indent + "  ");		// ƒŒƒxƒ‹ + 1’iš‰º‚°
+				System.out.print(indent + "  ");		// ï¿½ï¿½ï¿½xï¿½ï¿½ + 1ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				item.show();
 			}
 		}

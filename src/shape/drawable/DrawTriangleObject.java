@@ -1,8 +1,9 @@
-package sample4;
+package shape.drawable;
 
 import java.awt.*;
 
 import sample.MyPoint;
+import shape.editable.TriangleShape;
 
 public class DrawTriangleObject extends TriangleShape implements DrawableObject {
 	private Color color;
@@ -14,7 +15,7 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		int[] xint = new int[3];
 		int[] yint = new int[3];
 		for(int i = 0; i < 3; i++){
@@ -29,7 +30,7 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 
 	@Override
 	public void setColor(Color color) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		this.color = color;
 	}
 }

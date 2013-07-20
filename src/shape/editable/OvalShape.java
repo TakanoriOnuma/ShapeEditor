@@ -1,4 +1,6 @@
-package sample4;
+package shape.editable;
+
+
 
 public class OvalShape extends EditableShape{
 	protected double x;
@@ -15,7 +17,7 @@ public class OvalShape extends EditableShape{
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		double a = width / 2;
 		double b = height / 2;
 		double x = (this.x + a) - xpos;
@@ -25,13 +27,13 @@ public class OvalShape extends EditableShape{
 	}
 	@Override
 	public void move(double dx, double dy) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		x += dx;
 		y += dy;
 	}
 	@Override
 	public void show() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		System.out.println("Oval(" + isSelected() + "): (" +
 			x + ", " + y + ") (" + (x + width) + ", " + (y + height) + ")");
 	}

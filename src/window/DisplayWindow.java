@@ -1,7 +1,10 @@
-package sample4;
+package window;
 
 import java.awt.*;
 import javax.swing.*;
+
+import shape.drawable.DrawableObject;
+
 import java.util.*;
 
 public class DisplayWindow extends JFrame {
@@ -11,25 +14,25 @@ public class DisplayWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private MyPanel myPanel;
-	private LinkedList<?> objList;		// ŠG‰æ‚·‚é}Œ`”z—ñ‚Ö‚ÌQÆ
+	private LinkedList<?> objList;		// ï¿½Gï¿½æ‚·ï¿½ï¿½}ï¿½`ï¿½zï¿½ï¿½Ö‚ÌQï¿½ï¿½
 
 	DisplayWindow(LinkedList<?> objList) {
-		super("Shape •\¦");
+		super("Shape ï¿½\ï¿½ï¿½");
 		this.objList = objList;
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(200, 200);
 		myPanel = new MyPanel();
 		add(myPanel, BorderLayout.CENTER);
-		setVisible(true);		// ƒEƒBƒ“ƒhƒE‚Ì•\¦
+		setVisible(true);		// ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Ì•\ï¿½ï¿½
 	}
 
 	public void invisible(){
-		setVisible(false);		// ƒEƒBƒ“ƒhƒE‚Ì”ñ•\¦
+		setVisible(false);		// ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Ì”ï¿½\ï¿½ï¿½
 	}
 
 	public void drawAll(){
-		myPanel.repaint();		// ƒEƒBƒ“ƒhƒE‚ÌÄŠG‰æ (MyPanel ‚Ì paint ‚ÌŒÄ‚Ño‚µ)
+		myPanel.repaint();		// ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½ÌÄŠGï¿½ï¿½ (MyPanel ï¿½ï¿½ paint ï¿½ÌŒÄ‚Ñoï¿½ï¿½)
 	}
 
 	public class MyPanel extends JPanel {

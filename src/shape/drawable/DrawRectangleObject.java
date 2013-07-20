@@ -1,19 +1,21 @@
-package sample4;
+package shape.drawable;
 
 import java.awt.*;
+
+import shape.editable.RectangleShape;
 
 public class DrawRectangleObject extends RectangleShape implements DrawableObject {
 	private Color  color;
 
 	public DrawRectangleObject(double x, double y, double width, double height){
 		super(x, y, width, height);
-		color = Color.gray;			// ƒfƒtƒHƒ‹ƒg‚Åİ’è
+		color = Color.gray;			// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Åİ’ï¿½
 	}
 
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, (int)width, (int)height);
 		g.setColor(Color.black);
@@ -22,7 +24,7 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 
 	@Override
 	public void setColor(Color color) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Eï¿½Xï¿½^ï¿½u
 		this.color = color;
 	}
 

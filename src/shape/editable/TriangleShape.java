@@ -1,12 +1,12 @@
-package sample4;
+package shape.editable;
 
 import sample.MyPoint;
 
 public class TriangleShape extends EditableShape {
 	protected MyPoint[] pt = new MyPoint[3];
 
-	// OŠpŒ`‚Ì3‚Â’¸“_‚ğ‰E‰ñ‚è‚Å“ü—Í‚·‚é(’FƒEƒBƒ“ƒhƒEÀ•Wã‚Å‚Í¶‰ñ‚è)
-	// “¯ˆêüã‚Ì“_‚Í“ü—Í‚³‚ê‚È‚¢‚±‚Æ‚ğ‰¼’è‚µ‚Ä‚¢‚é
+	// ï¿½Oï¿½pï¿½`ï¿½ï¿½3ï¿½Â’ï¿½ï¿½_ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½Å“ï¿½Í‚ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Fï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½ï¿½ï¿½Wï¿½ï¿½Å‚Íï¿½ï¿½ï¿½ï¿½)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì“_ï¿½Í“ï¿½Í‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½è‚µï¿½Ä‚ï¿½ï¿½ï¿½
 	public TriangleShape(MyPoint pt1, MyPoint pt2, MyPoint pt3) {
 		super();
 		pt[0] = pt1;
@@ -17,7 +17,7 @@ public class TriangleShape extends EditableShape {
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
 		boolean ret = true;
-		// “_‚ª3•Ó‚Ì‰E‰ñ‚èƒxƒNƒgƒ‹‚Ì‚Ç‚ê‚©‚É‘Î‚µ‚ÄA¶‚ÉŒ©‚¦‚Ä‚¢‚ê‚ÎŠO‚Ì“_‚É‚È‚é
+		// ï¿½_ï¿½ï¿½3ï¿½Ó‚Ì‰Eï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Ì‚Ç‚ê‚©ï¿½É‘Î‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½ÉŒï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ÎŠOï¿½Ì“_ï¿½É‚È‚ï¿½
 		for(int i = 0; i < pt.length; i++) {
 			if((pt[(i + 1) % 3].getY() - pt[i].getY()) * (xpos - pt[i].getX()) <
 					(ypos - pt[i].getY()) * (pt[(i + 1) % 3].getX() - pt[i].getX())) {
@@ -29,7 +29,7 @@ public class TriangleShape extends EditableShape {
 
 	@Override
 	public void move(double dx, double dy) {
-		// w’è‚µ‚½·•ª‚ÌˆÚ“®‚ğ‚·‚é
+		// ï¿½wï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(int i = 0; i < pt.length; i++) {
 			pt[i].move(dx, dy);
 		}
