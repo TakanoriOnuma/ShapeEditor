@@ -3,29 +3,28 @@ package shape.drawable;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import shape.drawer.Drawer;
+import shape.drawer.FillDrawer;
 import shape.editable.OvalShape;
 
 public class DrawOvalObject extends OvalShape implements DrawableObject {
-	private Color color;
+	private Drawer drawer;
 
 	public DrawOvalObject(double x, double y, double width, double height){
 		super(x, y, width, height);
-		color = Color.gray;
+		drawer = new FillDrawer(Color.blue);
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		// TODO 自動生成されたメソッド・スタブ
-		g.setColor(color);
-		g.fillOval((int)x, (int)y, (int)width, (int)height);
-		g.setColor(Color.black);
-		g.drawOval((int)x, (int)y, (int)width, (int)height);
+		drawer.draw(g, this);
 	}
 
 	@Override
 	public void setColor(Color color) {
 		// TODO 自動生成されたメソッド・スタブ
-		this.color = color;
+//		this.color = color;
 	}
 
 }
