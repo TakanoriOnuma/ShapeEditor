@@ -14,6 +14,7 @@ import shape.drawable.DrawTriangleObject;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
+import shape.factory.FillObjectFactory;
 import window.DisplayWindow;
 
 public class Editor {
@@ -28,20 +29,7 @@ public class Editor {
 		BufferedReader input =
 				new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.print("Please input Factory name >> ");
-		String factoryName = "";
-		try{
-			factoryName = input.readLine();
-		}
-		catch(IOException e){
-			System.out.println("Please input correctly");
-			System.exit(-1);
-		}
-
-		f = EditableShapeFactory.getFactory(factoryName);
-		if(f == null){
-			System.exit(-1);
-		}
+		f = new FillObjectFactory();	// 始めは塗りつぶすFactoryにする
 
 		shapeList = f.create();			// 図形要素の配列を生成
 		show();							// 図形要素を順に表示
@@ -87,7 +75,11 @@ public class Editor {
 		}
 
 		ec.token = str.split(" ");		// strを' 'で分割
-		if(ec.token.length == 3){
+
+		if(ec.token[0].equals("create") == true) {
+			ec.command = CommandType.CREATE;
+		}
+		else if(ec.token.length == 3){
 			try{
 				// 第1引数を x に第2引数を y にDoubleとして読み込む
 				ec.x = Double.parseDouble(ec.token[1]);
@@ -112,6 +104,15 @@ public class Editor {
 				ec.command = CommandType.ERROR;
 			}
 		}
+		else if(ec.token.length == 2){
+			if(ec.token[0].equals("factory") == true){
+				ec.command = CommandType.FACTORY;
+			}
+			else{
+				System.out.println("Not a command: " + ec.token[0]);
+				ec.command = CommandType.ERROR;
+			}
+		}
 		else if(ec.token[0].equals("delete") == true) {
 			ec.command = CommandType.DELETE;
 		}
@@ -120,9 +121,6 @@ public class Editor {
 		}
 		else if(ec.token[0].equals("back") == true) {
 			ec.command = CommandType.BACK;
-		}
-		else if(ec.token[0].equals("create") == true) {
-			ec.command = CommandType.CREATE;
 		}
 		else if(ec.token[0].equals("show") == true){
 			ec.command = CommandType.SHOW;
@@ -265,6 +263,16 @@ public class Editor {
 				item.select();
 			}
 			break;
+
+		case FACTORY:
+		{
+			EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);
+			if(factory != null){
+				f = factory;
+			}
+
+			break;
+		}
 
 		case ERROR:
 		default:
