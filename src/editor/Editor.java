@@ -15,6 +15,7 @@ import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
 import shape.factory.FillObjectFactory;
+import shape.factory.ImageObjectFactory;
 import window.DisplayWindow;
 
 public class Editor {
@@ -266,9 +267,14 @@ public class Editor {
 
 		case FACTORY:
 		{
-			EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);
-			if(factory != null){
-				f = factory;
+			if(ec.token[1].equals("ImageObject") == true) {
+				f = new ImageObjectFactory(myWindow);
+			}
+			else {
+				EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);
+				if(factory != null){
+					f = factory;
+				}
 			}
 
 			break;
