@@ -9,7 +9,7 @@ public abstract class EditableShapeFactory {
 	public static EditableShapeFactory getFactory(String maker){
 		EditableShapeFactory ret;
 		try{
-			Class<?> c = Class.forName("shape.factory." + maker + "Factory");		// �p�b�P�[�W�����܂߂��N���X��
+			Class<?> c = Class.forName("shape.factory." + maker + "Factory");		// パッケージ名も含めたクラス名
 			ret = (EditableShapeFactory)c.newInstance();
 		}
 		catch(Exception e){
