@@ -8,6 +8,35 @@ public class RectangleShape extends EditableShape {
 	protected double width;		// 矩形の幅
 	protected double height;	// 矩形の高さ
 
+	// --- getter, setter --- //
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
 	public RectangleShape(double x, double y, double width, double height) {
 		super();
 		this.x = x;

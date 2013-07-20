@@ -3,35 +3,28 @@ package shape.drawable;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import shape.drawer.Drawer;
+import shape.drawer.FillDrawer;
 import shape.editable.MyPoint;
 import shape.editable.TriangleShape;
 
 public class DrawTriangleObject extends TriangleShape implements DrawableObject {
-	private Color color;
+	private Drawer drawer;
 
 	public DrawTriangleObject(MyPoint pt1, MyPoint pt2, MyPoint pt3){
 		super(pt1, pt2, pt3);
-		color = Color.gray;
+		drawer = new FillDrawer(Color.red);
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		// TODO 自動生成されたメソッド・スタブ
-		int[] xint = new int[3];
-		int[] yint = new int[3];
-		for(int i = 0; i < 3; i++){
-			xint[i] = (int)pt[i].getX();
-			yint[i] = (int)pt[i].getY();
-		}
-		g.setColor(color);
-		g.fillPolygon(xint, yint, 3);
-		g.setColor(Color.black);
-		g.drawPolygon(xint, yint, 3);
+		drawer.draw(g, this);
 	}
 
 	@Override
 	public void setColor(Color color) {
 		// TODO 自動生成されたメソッド・スタブ
-		this.color = color;
+//		this.color = color;
 	}
 }
