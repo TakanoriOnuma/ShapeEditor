@@ -1,5 +1,6 @@
 package shape.factory;
 
+import java.awt.Color;
 import java.util.LinkedList;
 
 import shape.drawable.DrawOvalObject;
@@ -17,14 +18,14 @@ public class LineObjectFactory extends EditableShapeFactory {
 		EditableShape shape = null;
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
-				shape = new DrawTriangleObject(new MyPoint(0, 0),
-							new MyPoint(0, 10), new MyPoint(20, 0), new LineDrawer());
+				shape = new DrawTriangleObject(new MyPoint(0, 0), new MyPoint(0, 10),
+							new MyPoint(20, 0), new LineDrawer(Color.red));
 			}
 			else if(token[1].equals("Rectangle") == true){
-				shape = new DrawRectangleObject(0, 0, 10, 10, new LineDrawer());
+				shape = new DrawRectangleObject(0, 0, 10, 10, new LineDrawer(Color.green));
 			}
 			else if(token[1].equals("Oval") == true){
-				shape = new DrawOvalObject(0, 0, 20, 10, new LineDrawer());
+				shape = new DrawOvalObject(0, 0, 20, 10, new LineDrawer(Color.blue));
 			}
 		}
 		return shape;
