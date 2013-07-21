@@ -22,23 +22,17 @@ public class ImageObjectFactory extends EditableShapeFactory {
 		// TODO 自動生成されたメソッド・スタブ
 		EditableShape shape = null;
 		if(token.length > 1){
+			ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
+			double width = imgDrawer.getImage().getWidth(null);
+			double height = imgDrawer.getImage().getHeight(null);
 			if(token[1].equals("Triangle") == true){
-				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
-				double width = imgDrawer.getImage().getWidth(null);
-				double height = imgDrawer.getImage().getHeight(null);
 				shape = new DrawTriangleObject(new MyPoint(width / 2, 0),
 							new MyPoint(0, height), new MyPoint(width, height / 2), imgDrawer);
 			}
 			else if(token[1].equals("Rectangle") == true){
-				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
-				int width = imgDrawer.getImage().getWidth(null);
-				int height = imgDrawer.getImage().getHeight(null);
 				shape = new DrawRectangleObject(0, 0, width, height, imgDrawer);
 			}
 			else if(token[1].equals("Oval") == true){
-				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
-				int width = imgDrawer.getImage().getWidth(null);
-				int height = imgDrawer.getImage().getHeight(null);
 				shape = new DrawOvalObject(0, 0, width, height, imgDrawer);
 			}
 		}
