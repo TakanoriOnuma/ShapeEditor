@@ -25,13 +25,10 @@ public class ImageDrawer implements Drawer {
 	public ImageDrawer(String filename, Component comp){
 		this.comp = comp;
 		MediaTracker mt = new MediaTracker(comp);
-		Image img = Toolkit.getDefaultToolkit().createImage(filename);
-		image = Toolkit.getDefaultToolkit().createImage(
-					new FilteredImageSource(img.getSource(), new TransparentFilter()));
-		mt.addImage(img, 0);
-		mt.addImage(image, 1);
+		image = Toolkit.getDefaultToolkit().createImage(filename);
+		mt.addImage(image, 0);
 		try{
-			mt.waitForAll();
+			mt.waitForID(0);
 		}
 		catch(InterruptedException e){
 		}
