@@ -24,16 +24,19 @@ public class ImageObjectFactory extends EditableShapeFactory {
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
 				shape = new DrawTriangleObject(new MyPoint(0, 0), new MyPoint(0, 10),
-							new MyPoint(20, 0), new ImageDrawer("test.bmp", comp));
+							new MyPoint(20, 0), new ImageDrawer("triangle.png", comp));
 			}
 			else if(token[1].equals("Rectangle") == true){
-				ImageDrawer imgDrawer = new ImageDrawer("test.jpg", comp);
+				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
 				int width = imgDrawer.getImage().getWidth(null);
 				int height = imgDrawer.getImage().getHeight(null);
 				shape = new DrawRectangleObject(0, 0, width, height, imgDrawer);
 			}
 			else if(token[1].equals("Oval") == true){
-				shape = new DrawOvalObject(0, 0, 20, 10);
+				ImageDrawer imgDrawer = new ImageDrawer("oval.png", comp);
+				int width = imgDrawer.getImage().getWidth(null);
+				int height = imgDrawer.getImage().getHeight(null);
+				shape = new DrawOvalObject(0, 0, width, height, imgDrawer);
 			}
 		}
 		return shape;
