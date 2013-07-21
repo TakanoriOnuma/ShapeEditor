@@ -12,12 +12,18 @@ import java.awt.image.RGBImageFilter;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
+import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 
 public class ImageDrawer implements Drawer {
 	private Image image;
+	private Image ovalImage;
+	private Image triangleImage;
+
+	private Component comp;
 
 	public ImageDrawer(String filename, Component comp){
+		this.comp = comp;
 		MediaTracker mt = new MediaTracker(comp);
 		Image img = Toolkit.getDefaultToolkit().createImage(filename);
 		image = Toolkit.getDefaultToolkit().createImage(
@@ -29,8 +35,6 @@ public class ImageDrawer implements Drawer {
 		}
 		catch(InterruptedException e){
 		}
-
-
 	}
 
 	public Image getImage(){
@@ -40,10 +44,29 @@ public class ImageDrawer implements Drawer {
 		this.image = image;
 	}
 
+	private Image createTransparentImage(EditableShape shape) {
+		Image img;
+		MediaTracker mt = new MediaTracker(comp);
+		img = Toolkit.getDefaultToolkit().createImage(
+				new FilteredImageSource(image.getSource(), new EditableShapeFilter(shape)));
+		mt.addImage(img, 0);
+		try {
+			mt.waitForID(0);
+		}
+		catch(InterruptedException e) {
+		}
+
+		return img;
+	}
+
 	@Override
 	public void draw(Graphics g, DrawOvalObject oval) {
 		// TODO 自動生成されたメソッド・スタブ
-		g.drawImage(image, (int)oval.getX(), (int)oval.getY(), null);
+		if(ovalImage == null){
+			ovalImage = createTransparentImage(oval);
+		}
+
+		g.drawImage(ovalImage, (int)oval.getX(), (int)oval.getY(), null);
 	}
 
 	@Override
@@ -56,10 +79,36 @@ public class ImageDrawer implements Drawer {
 	@Override
 	public void draw(Graphics g, DrawTriangleObject triangle) {
 		// TODO 自動生成されたメソッド・スタブ
+		if(triangleImage == null) {
+			triangleImage = createTransparentImage(triangle);
+		}
+
 		MyPoint pt = triangle.getPoint(0);
-		g.drawImage(image, (int)pt.getX(), (int)pt.getY(), null);
+		g.drawImage(triangleImage, (int)pt.getX(), (int)pt.getY(), null);
 	}
 
+
+	/**
+	 * EditableShape領域内のみ表示させるフィルター
+	 */
+	class EditableShapeFilter extends RGBImageFilter {
+		EditableShape shape;
+
+		public EditableShapeFilter(EditableShape shape) {
+			canFilterIndexColorModel = true;
+			this.shape = shape;
+		}
+
+		@Override
+		public int filterRGB(int x, int y, int rgb) {
+			// TODO 自動生成されたメソッド・スタブ
+			// shapeの座標が(0, 0)でないと上手くいかない可能性がある
+			if(shape.isIncluding(x, y) == true){
+				return rgb;
+			}
+			return 0;
+		}
+	}
 }
 
 /**

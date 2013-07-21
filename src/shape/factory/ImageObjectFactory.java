@@ -24,7 +24,7 @@ public class ImageObjectFactory extends EditableShapeFactory {
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
 				shape = new DrawTriangleObject(new MyPoint(0, 0), new MyPoint(0, 10),
-							new MyPoint(20, 0), new ImageDrawer("triangle.png", comp));
+							new MyPoint(20, 0), new ImageDrawer("rectangle.png", comp));
 			}
 			else if(token[1].equals("Rectangle") == true){
 				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
@@ -33,7 +33,7 @@ public class ImageObjectFactory extends EditableShapeFactory {
 				shape = new DrawRectangleObject(0, 0, width, height, imgDrawer);
 			}
 			else if(token[1].equals("Oval") == true){
-				ImageDrawer imgDrawer = new ImageDrawer("oval.png", comp);
+				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
 				int width = imgDrawer.getImage().getWidth(null);
 				int height = imgDrawer.getImage().getHeight(null);
 				shape = new DrawOvalObject(0, 0, width, height, imgDrawer);
