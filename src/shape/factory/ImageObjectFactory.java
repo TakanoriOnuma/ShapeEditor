@@ -23,8 +23,11 @@ public class ImageObjectFactory extends EditableShapeFactory {
 		EditableShape shape = null;
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
-				shape = new DrawTriangleObject(new MyPoint(0, 0), new MyPoint(0, 10),
-							new MyPoint(20, 0), new ImageDrawer("rectangle.png", comp));
+				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
+				double width = imgDrawer.getImage().getWidth(null);
+				double height = imgDrawer.getImage().getHeight(null);
+				shape = new DrawTriangleObject(new MyPoint(width / 2, 0),
+							new MyPoint(0, height), new MyPoint(width, height / 2), imgDrawer);
 			}
 			else if(token[1].equals("Rectangle") == true){
 				ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
