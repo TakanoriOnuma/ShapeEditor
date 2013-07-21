@@ -22,7 +22,7 @@ public class ImageObjectFactory extends EditableShapeFactory {
 		// TODO 自動生成されたメソッド・スタブ
 		EditableShape shape = null;
 		if(token.length > 1){
-			ImageDrawer imgDrawer = new ImageDrawer("rectangle.png", comp);
+			ImageDrawer imgDrawer = new ImageDrawer("dog.png", comp);
 			double width = imgDrawer.getImage().getWidth(null);
 			double height = imgDrawer.getImage().getHeight(null);
 			if(token[1].equals("Triangle") == true){
