@@ -60,4 +60,10 @@ public class LineDrawer extends Drawer {
 	}
 
 
+	@Override
+	public LineDrawer clone() {
+		LineDrawer lineDrawer = (LineDrawer)super.clone();
+		lineDrawer.setColor(new Color(this.color.getRGB()));
+		return lineDrawer;
+	}
 }

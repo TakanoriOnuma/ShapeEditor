@@ -20,6 +20,7 @@ import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
 import shape.factory.FillObjectFactory;
 import shape.factory.ImageObjectFactory;
+import shape.factory.LineObjectFactory;
 import window.DisplayWindow;
 
 public class Editor {
@@ -278,6 +279,9 @@ public class Editor {
 		{
 			if(ec.token[1].equals("ImageObject") == true) {
 				f = new ImageObjectFactory(myWindow);
+			}
+			else if(ec.token[1].equals("LineObject")) {
+				f = LineObjectFactory.getInstance();
 			}
 			else {
 				EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);

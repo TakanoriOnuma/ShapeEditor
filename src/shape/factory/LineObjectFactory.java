@@ -11,6 +11,24 @@ import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 
 public class LineObjectFactory extends EditableShapeFactory {
+	private LineDrawer lineDrawer;
+
+	// --- シングルトンの実装 --- //
+	static private LineObjectFactory instance = new LineObjectFactory();
+
+	private LineObjectFactory() {
+		lineDrawer = new LineDrawer(Color.blue);
+	}
+
+	public static LineObjectFactory getInstance() {
+		return instance;
+	}
+
+
+	public LineDrawer getDrawer() {
+		return lineDrawer;
+	}
+
 
 	@Override
 	public EditableShape createShape(String[] token) {
@@ -19,13 +37,13 @@ public class LineObjectFactory extends EditableShapeFactory {
 		if(token.length > 1){
 			if(token[1].equals("Triangle") == true){
 				shape = new DrawTriangleObject(new MyPoint(0, 0), new MyPoint(0, 10),
-							new MyPoint(20, 0), new LineDrawer(Color.red));
+							new MyPoint(20, 0), lineDrawer.clone());
 			}
 			else if(token[1].equals("Rectangle") == true){
-				shape = new DrawRectangleObject(0, 0, 10, 10, new LineDrawer(Color.green));
+				shape = new DrawRectangleObject(0, 0, 10, 10, lineDrawer.clone());
 			}
 			else if(token[1].equals("Oval") == true){
-				shape = new DrawOvalObject(0, 0, 20, 10, new LineDrawer(Color.blue));
+				shape = new DrawOvalObject(0, 0, 20, 10, lineDrawer.clone());
 			}
 		}
 		return shape;
