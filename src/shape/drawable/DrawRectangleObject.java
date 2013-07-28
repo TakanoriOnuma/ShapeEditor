@@ -24,6 +24,11 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 	}
 
 	@Override
+	public Drawer getDrawer() {
+		return drawer;
+	}
+
+	@Override
 	public void draw(Graphics g) {
 		// TODO 自動生成されたメソッド・スタブ
 		drawer.draw(g, this);

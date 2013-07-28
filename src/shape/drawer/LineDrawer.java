@@ -8,7 +8,7 @@ import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.editable.MyPoint;
 
-public class LineDrawer implements Drawer {
+public class LineDrawer extends Drawer {
 	private Color color;
 
 	public LineDrawer(){
@@ -16,6 +16,19 @@ public class LineDrawer implements Drawer {
 	}
 	public LineDrawer(Color color){
 		this.color = color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	public Color getColor() {
+		return color;
+	}
+
+	@Override
+	void accept(DrawerVisitor visitor) {
+		// TODO 自動生成されたメソッド・スタブ
+		visitor.visiteLineDrawer(this);
 	}
 
 	@Override
@@ -45,5 +58,6 @@ public class LineDrawer implements Drawer {
 		g.setColor(color);
 		g.drawPolygon(xint, yint, 3);
 	}
+
 
 }

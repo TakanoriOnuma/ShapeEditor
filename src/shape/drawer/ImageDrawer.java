@@ -15,7 +15,7 @@ import shape.drawable.DrawTriangleObject;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 
-public class ImageDrawer implements Drawer {
+public class ImageDrawer extends Drawer {
 	private Image image;
 	private Image ovalImage;
 	private Image triangleImage;
@@ -54,6 +54,12 @@ public class ImageDrawer implements Drawer {
 		}
 
 		return img;
+	}
+
+	@Override
+	void accept(DrawerVisitor visitor) {
+		// TODO 自動生成されたメソッド・スタブ
+		visitor.visiteImageDrawer(this);
 	}
 
 	@Override
@@ -106,6 +112,8 @@ public class ImageDrawer implements Drawer {
 			return 0;
 		}
 	}
+
+
 }
 
 /**

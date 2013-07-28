@@ -25,6 +25,11 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 	}
 
 	@Override
+	public Drawer getDrawer() {
+		return drawer;
+	}
+
+	@Override
 	public void draw(Graphics g) {
 		// TODO 自動生成されたメソッド・スタブ
 		drawer.draw(g, this);

@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
+import shape.drawer.Drawer;
 import shape.editable.EditableShape;
 
 public class DrawGroupObject extends EditableShape implements DrawableObject {
@@ -22,6 +23,11 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 	}
 	public LinkedList<EditableShape> getList() {
 		return objList;
+	}
+
+	@Override
+	public Drawer getDrawer() {
+		return null;		// Compositeに対して何を返していいのかが分からない
 	}
 
 

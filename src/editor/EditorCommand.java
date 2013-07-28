@@ -2,7 +2,7 @@ package editor;
 
 
 enum CommandType{ EXIT, ERROR, SELECT, SHOW, MOVE, DELETE, FRONT, BACK,
-	CREATE, GROUP, UNGROUP, FACTORY, }
+	CREATE, GROUP, UNGROUP, FACTORY, COLOR, }
 public class EditorCommand {
 	CommandType command;
 	String[] token;			// コマンド文字列へのトークンへの分解結果

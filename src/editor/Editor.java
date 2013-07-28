@@ -1,6 +1,7 @@
 package editor;
 
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +12,8 @@ import java.util.List;
 import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
+import shape.drawable.DrawableObject;
+import shape.drawer.ColorDrawerVisitor;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
@@ -79,6 +82,11 @@ public class Editor {
 
 		if(ec.token[0].equals("create") == true) {
 			ec.command = CommandType.CREATE;
+		}
+		else if(ec.token.length == 4){
+			if(ec.token[0].equals("color") == true) {
+				ec.command = CommandType.COLOR;
+			}
 		}
 		else if(ec.token.length == 3){
 			try{
@@ -275,6 +283,36 @@ public class Editor {
 				if(factory != null){
 					f = factory;
 				}
+			}
+
+			break;
+		}
+
+		case COLOR:
+		{
+			int r, g, b;
+			try {
+				r = Integer.parseInt(ec.token[1]);
+				g = Integer.parseInt(ec.token[2]);
+				b = Integer.parseInt(ec.token[3]);
+			}
+			// 変換に失敗した場合
+			catch(NumberFormatException e) {
+				System.out.println("Int values needed: " + ec.token[0]);
+				break;
+			}
+
+			if(r >= 0 && r <= 255 &&
+				g >= 0 && g <= 255 &&
+				b >= 0 && b <= 255) {
+					ColorDrawerVisitor visitor = new ColorDrawerVisitor(new Color(r, g, b));
+					for(EditableShape item : shapeList) {
+						if(item.isSelected()) {
+							// DrawableObjectに無理やりキャスト
+							DrawableObject obj = (DrawableObject)item;
+							visitor.setDrawerPropaty(obj.getDrawer());
+						}
+					}
 			}
 
 			break;
