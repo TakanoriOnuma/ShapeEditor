@@ -65,4 +65,10 @@ public class FillDrawer extends Drawer {
 		g.drawPolygon(xint, yint, 3);
 	}
 
+	@Override
+	public FillDrawer clone() {
+		FillDrawer fillDrawer = (FillDrawer)super.clone();
+		fillDrawer.setColor(new Color(this.color.getRGB()));
+		return fillDrawer;
+	}
 }

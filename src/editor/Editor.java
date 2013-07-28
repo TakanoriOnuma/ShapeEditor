@@ -35,7 +35,7 @@ public class Editor {
 		BufferedReader input =
 				new BufferedReader(new InputStreamReader(System.in));
 
-		f = new FillObjectFactory();	// 始めは塗りつぶすFactoryにする
+		f = FillObjectFactory.getInstance();	// 始めは塗りつぶすFactoryにする
 
 		shapeList = f.create();			// 図形要素の配列を生成
 		show();							// 図形要素を順に表示
@@ -282,6 +282,9 @@ public class Editor {
 			}
 			else if(ec.token[1].equals("LineObject")) {
 				f = LineObjectFactory.getInstance();
+			}
+			else if(ec.token[1].equals("FillObject")) {
+				f = FillObjectFactory.getInstance();
 			}
 			else {
 				EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);

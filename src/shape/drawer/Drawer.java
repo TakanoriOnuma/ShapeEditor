@@ -22,7 +22,7 @@ public abstract class Drawer implements Cloneable {
 		try {
 			drawer = (Drawer)super.clone();
 		}
-		catch(CloneNotSupportedException e) {
+		catch (CloneNotSupportedException e) {
 			throw new RuntimeException();		// ランタイムエラーを投げる
 		}
 		return drawer;
