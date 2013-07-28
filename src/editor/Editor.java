@@ -14,6 +14,7 @@ import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.drawer.ColorDrawerVisitor;
+import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
@@ -310,7 +311,13 @@ public class Editor {
 						if(item.isSelected()) {
 							// DrawableObjectに無理やりキャスト
 							DrawableObject obj = (DrawableObject)item;
-							visitor.setDrawerPropaty(obj.getDrawer());
+
+							try {
+								visitor.setDrawerPropaty(obj.getDrawer());
+							}
+							catch(NoUsingPropatyException e) {
+								System.out.println(e);
+							}
 						}
 					}
 			}
