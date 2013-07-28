@@ -11,10 +11,29 @@ import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 
 public class ImageObjectFactory extends EditableShapeFactory {
-	Component comp;
+	private ImageDrawer imgDrawer;
+	private Component comp;
 
-	public ImageObjectFactory(Component comp){
+	static private ImageObjectFactory instance = null;
+
+	private ImageObjectFactory(Component comp){
 		this.comp= comp;
+	}
+
+
+	public static void create(Component comp) {
+		instance = new ImageObjectFactory(comp);
+	}
+
+	public static ImageObjectFactory getInstance() {
+		return instance;
+	}
+
+
+
+
+	public ImageDrawer getImageDrawer() {
+		return imgDrawer;		// 今はまだ使用していない
 	}
 
 	@Override

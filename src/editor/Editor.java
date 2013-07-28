@@ -42,6 +42,7 @@ public class Editor {
 		myWindow = new DisplayWindow((LinkedList<?>)shapeList);
 		myWindow.drawAll();
 
+		ImageObjectFactory.create(myWindow);	// あらかじめ作っておく
 
 		boolean goOn = true;
 		while(goOn){
@@ -278,7 +279,7 @@ public class Editor {
 		case FACTORY:
 		{
 			if(ec.token[1].equals("ImageObject") == true) {
-				f = new ImageObjectFactory(myWindow);
+				f = ImageObjectFactory.getInstance();
 			}
 			else if(ec.token[1].equals("LineObject")) {
 				f = LineObjectFactory.getInstance();
