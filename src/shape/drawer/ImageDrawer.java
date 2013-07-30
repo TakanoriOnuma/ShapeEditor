@@ -16,29 +16,55 @@ import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 
 public class ImageDrawer extends Drawer {
-	private Image image;
-	private Image ovalImage;
-	private Image triangleImage;
+	private Image image;			// 元の画像
+	private Image drawImg;			// 描画に使う画像
+
+	private String filename;		// 今使っている画像のファイル名
 
 	private Component comp;
 
 	public ImageDrawer(String filename, Component comp){
 		this.comp = comp;
+		this.image = readImage(filename);
+		this.filename = new String(filename);
+	}
+
+	private Image readImage(String filename) {
+		Image img;
 		MediaTracker mt = new MediaTracker(comp);
-		image = Toolkit.getDefaultToolkit().createImage(filename);
-		mt.addImage(image, 0);
+		img = Toolkit.getDefaultToolkit().createImage(filename);
+		mt.addImage(img, 0);
 		try{
 			mt.waitForID(0);
 		}
 		catch(InterruptedException e){
 		}
+		return img;
 	}
 
+	public String getFileName() {
+		return filename;
+	}
 	public Image getImage(){
 		return image;
 	}
 	public void setImage(Image image){
-		this.image = image;
+		this.image = image;		// 元の画像を変える
+		this.drawImg = null;	// 元の画像が変わったため描画の画像も変わる
+	}
+	public void setImage(String filename) {
+		this.filename = new String(filename);
+		Image img = readImage(filename);
+
+		// 読み込みに失敗したら
+		if(img == null) {
+			System.out.println("ファイルが読み込めません。");
+		}
+		// 読み込みに成功したら
+		else {
+			this.image = img;		// 元の画像を変える
+			this.drawImg = null;	// 元の画像が変わったため、描画の画像も変わる
+		}
 	}
 
 	private Image createTransparentImage(EditableShape shape) {
@@ -65,29 +91,33 @@ public class ImageDrawer extends Drawer {
 	@Override
 	public void draw(Graphics g, DrawOvalObject oval) {
 		// TODO 自動生成されたメソッド・スタブ
-		if(ovalImage == null){
-			ovalImage = createTransparentImage(oval);
+		if(drawImg == null){
+			drawImg = createTransparentImage(oval);
 		}
 
-		g.drawImage(ovalImage, (int)oval.getX(), (int)oval.getY(), null);
+		g.drawImage(drawImg, (int)oval.getX(), (int)oval.getY(), null);
 	}
 
 	@Override
 	public void draw(Graphics g, DrawRectangleObject rect) {
 		// TODO 自動生成されたメソッド・スタブ
-		g.drawImage(image, (int)rect.getX(), (int)rect.getY(), null);
+		if(drawImg == null) {
+			drawImg = image;		// 長方形はそのまま
+		}
+
+		g.drawImage(drawImg, (int)rect.getX(), (int)rect.getY(), null);
 
 	}
 
 	@Override
 	public void draw(Graphics g, DrawTriangleObject triangle) {
 		// TODO 自動生成されたメソッド・スタブ
-		if(triangleImage == null) {
-			triangleImage = createTransparentImage(triangle);
+		if(drawImg == null) {
+			drawImg = createTransparentImage(triangle);
 		}
 
 		MyPoint pt = triangle.getPoint(0);
-		g.drawImage(triangleImage, (int)pt.getX(), (int)pt.getY(), null);
+		g.drawImage(drawImg, (int)pt.getX(), (int)pt.getY(), null);
 	}
 
 
