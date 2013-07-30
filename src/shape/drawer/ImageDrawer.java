@@ -57,7 +57,7 @@ public class ImageDrawer extends Drawer {
 		Image img = readImage(filename);
 
 		// 読み込みに失敗したら
-		if(img == null) {
+		if(img.getWidth(null) == -1) {
 			System.out.println("ファイルが読み込めません。");
 		}
 		// 読み込みに成功したら

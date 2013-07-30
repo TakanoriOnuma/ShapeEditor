@@ -15,6 +15,7 @@ import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.drawer.ColorDrawerGetter;
 import shape.drawer.ColorDrawerSetter;
+import shape.drawer.ImageDrawerSetter;
 import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
@@ -124,6 +125,9 @@ public class Editor {
 			else {
 				ec.command = CommandType.FACTORY;
 			}
+		}
+		else if(ec.token[0].equals("image")) {
+			ec.command = CommandType.IMAGE;
 		}
 		else if(ec.token[0].equals("info")) {
 			if(ec.token[1].equals("color")) {
@@ -385,6 +389,25 @@ public class Editor {
 								", " + color.getBlue() + ")");
 					}
 					catch(NoUsingPropatyException e) {
+						System.out.println(e);
+					}
+				}
+			}
+
+			break;
+		}
+
+		case IMAGE:
+		{
+			ImageDrawerSetter setter = new ImageDrawerSetter(ec.token[1]);
+			for(EditableShape item : shapeList) {
+				if(item.isSelected()) {
+					DrawableObject obj = (DrawableObject)item;		// 無理やりキャスト
+
+					try {
+						setter.visiteDrawerPropaty(obj.getDrawer());
+					}
+					catch (NoUsingPropatyException e) {
 						System.out.println(e);
 					}
 				}
