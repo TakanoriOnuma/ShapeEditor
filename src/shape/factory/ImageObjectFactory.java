@@ -18,6 +18,7 @@ public class ImageObjectFactory extends EditableShapeFactory {
 
 	private ImageObjectFactory(Component comp){
 		this.comp= comp;
+		imgDrawer = new ImageDrawer("dog.png", comp);	// とりあえず何か作る
 	}
 
 

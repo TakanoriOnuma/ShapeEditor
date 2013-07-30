@@ -116,13 +116,12 @@ public class Editor {
 				ec.command = CommandType.ERROR;
 			}
 		}
-		else if(ec.token.length == 2){
-			if(ec.token[0].equals("factory") == true){
-				ec.command = CommandType.FACTORY;
+		else if(ec.token[0].equals("factory") == true){
+			if(ec.token[1].equals("color")) {
+				ec.command = CommandType.FACTORY_COLOR;
 			}
-			else{
-				System.out.println("Not a command: " + ec.token[0]);
-				ec.command = CommandType.ERROR;
+			else {
+				ec.command = CommandType.FACTORY;
 			}
 		}
 		else if(ec.token[0].equals("delete") == true) {
@@ -292,6 +291,35 @@ public class Editor {
 				if(factory != null){
 					f = factory;
 				}
+			}
+
+			break;
+		}
+
+		case FACTORY_COLOR:
+		{
+			int r, g, b;
+			try {
+				r = Integer.parseInt(ec.token[2]);
+				g = Integer.parseInt(ec.token[3]);
+				b = Integer.parseInt(ec.token[4]);
+			}
+			// 変換に失敗した場合
+			catch(NumberFormatException e) {
+				System.out.println("Int values needed: " + ec.token[0]);
+				break;
+			}
+
+			if(r >= 0 && r <= 255 &&
+				g >= 0 && g <= 255 &&
+				b >= 0 && b <= 255) {
+					ColorDrawerVisitor visitor = new ColorDrawerVisitor(new Color(r, g, b));
+					try{
+						visitor.setDrawerPropaty(f.getDrawer());
+					}
+					catch (NoUsingPropatyException e) {
+						System.out.println(e);
+					}
 			}
 
 			break;
