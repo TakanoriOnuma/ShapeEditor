@@ -13,6 +13,7 @@ import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
+import shape.drawer.ColorDrawerGetter;
 import shape.drawer.ColorDrawerSetter;
 import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
@@ -122,6 +123,11 @@ public class Editor {
 			}
 			else {
 				ec.command = CommandType.FACTORY;
+			}
+		}
+		else if(ec.token[0].equals("info")) {
+			if(ec.token[1].equals("color")) {
+				ec.command = CommandType.INFO_COLOR;
 			}
 		}
 		else if(ec.token[0].equals("delete") == true) {
@@ -356,6 +362,32 @@ public class Editor {
 							}
 						}
 					}
+			}
+
+			break;
+		}
+
+		case INFO_COLOR:
+		{
+			ColorDrawerGetter getter = new ColorDrawerGetter();
+			for(EditableShape item : shapeList) {
+				if(item.isSelected()) {
+					item.show();
+					System.out.print(":");
+
+					// DrawableObjectに無理やりキャスト
+					DrawableObject obj = (DrawableObject)item;
+
+					try {
+						getter.visiteDrawerPropaty(obj.getDrawer());
+						Color color = getter.getColor();
+						System.out.println("color(" + color.getRed() + ", " + color.getGreen() +
+								", " + color.getBlue() + ")");
+					}
+					catch(NoUsingPropatyException e) {
+						System.out.println(e);
+					}
+				}
 			}
 
 			break;
