@@ -13,7 +13,7 @@ import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
-import shape.drawer.ColorDrawerVisitor;
+import shape.drawer.ColorDrawerSetter;
 import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
@@ -313,9 +313,9 @@ public class Editor {
 			if(r >= 0 && r <= 255 &&
 				g >= 0 && g <= 255 &&
 				b >= 0 && b <= 255) {
-					ColorDrawerVisitor visitor = new ColorDrawerVisitor(new Color(r, g, b));
+					ColorDrawerSetter setter = new ColorDrawerSetter(new Color(r, g, b));
 					try{
-						visitor.setDrawerPropaty(f.getDrawer());
+						setter.visiteDrawerPropaty(f.getDrawer());
 					}
 					catch (NoUsingPropatyException e) {
 						System.out.println(e);
@@ -342,14 +342,14 @@ public class Editor {
 			if(r >= 0 && r <= 255 &&
 				g >= 0 && g <= 255 &&
 				b >= 0 && b <= 255) {
-					ColorDrawerVisitor visitor = new ColorDrawerVisitor(new Color(r, g, b));
+					ColorDrawerSetter setter = new ColorDrawerSetter(new Color(r, g, b));
 					for(EditableShape item : shapeList) {
 						if(item.isSelected()) {
 							// DrawableObjectに無理やりキャスト
 							DrawableObject obj = (DrawableObject)item;
 
 							try {
-								visitor.setDrawerPropaty(obj.getDrawer());
+								setter.visiteDrawerPropaty(obj.getDrawer());
 							}
 							catch(NoUsingPropatyException e) {
 								System.out.println(e);

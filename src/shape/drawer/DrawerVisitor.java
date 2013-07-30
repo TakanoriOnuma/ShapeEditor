@@ -1,7 +1,7 @@
 package shape.drawer;
 
 public abstract class DrawerVisitor {
-	public void setDrawerPropaty(Drawer drawer) throws NoUsingPropatyException {
+	public void visiteDrawerPropaty(Drawer drawer) throws NoUsingPropatyException {
 		drawer.accept(this);
 	}
 

@@ -2,10 +2,10 @@ package shape.drawer;
 
 import java.awt.Color;
 
-public class ColorDrawerVisitor extends DrawerVisitor {
+public class ColorDrawerSetter extends DrawerVisitor {
 	private Color color;
 
-	public ColorDrawerVisitor(Color color) {
+	public ColorDrawerSetter(Color color) {
 		this.color = color;
 	}
 
