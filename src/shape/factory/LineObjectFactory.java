@@ -24,7 +24,7 @@ public class LineObjectFactory extends EditableShapeFactory {
 		return instance;
 	}
 
-
+	@Override
 	public LineDrawer getDrawer() {
 		return lineDrawer;
 	}

@@ -2,6 +2,7 @@ package shape.factory;
 
 import java.util.LinkedList;
 
+import shape.drawer.Drawer;
 import shape.editable.EditableShape;
 
 public abstract class EditableShapeFactory {
@@ -19,6 +20,7 @@ public abstract class EditableShapeFactory {
 		return ret;
 	}
 
+	public abstract Drawer getDrawer();
 	public abstract EditableShape createShape(String[] token);
 	public abstract LinkedList<EditableShape> create();
 }

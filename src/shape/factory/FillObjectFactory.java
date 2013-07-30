@@ -24,8 +24,8 @@ public class FillObjectFactory extends EditableShapeFactory {
 		return instance;
 	}
 
-
-	public FillDrawer getFillDrawer() {
+	@Override
+	public FillDrawer getDrawer() {
 		return fillDrawer;
 	}
 

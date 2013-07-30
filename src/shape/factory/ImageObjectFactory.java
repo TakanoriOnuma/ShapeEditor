@@ -31,8 +31,8 @@ public class ImageObjectFactory extends EditableShapeFactory {
 
 
 
-
-	public ImageDrawer getImageDrawer() {
+	@Override
+	public ImageDrawer getDrawer() {
 		return imgDrawer;		// 今はまだ使用していない
 	}
 
