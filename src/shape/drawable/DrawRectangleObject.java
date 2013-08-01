@@ -2,6 +2,7 @@ package shape.drawable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 
 import shape.drawer.Drawer;
 import shape.drawer.FillDrawer;
@@ -35,10 +36,11 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 	}
 
 	@Override
-	public void setColor(Color color) {
+	public Rectangle2D.Double getDrawField() {
 		// TODO 自動生成されたメソッド・スタブ
-//		this.color = color;
+		return new Rectangle2D.Double(x, y, width, height);
 	}
+
 
 
 }

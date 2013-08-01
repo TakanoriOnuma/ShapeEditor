@@ -6,14 +6,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.RGBImageFilter;
 
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
+import shape.drawable.DrawableObject;
 import shape.editable.EditableShape;
-import shape.editable.MyPoint;
 
 public class ImageDrawer extends Drawer {
 	private Image image;			// 元の画像
@@ -68,6 +69,10 @@ public class ImageDrawer extends Drawer {
 	}
 
 	private Image createTransparentImage(EditableShape shape) {
+		DrawableObject obj = (DrawableObject)shape;		// 無理やりのキャスト
+		Rectangle2D.Double field = obj.getDrawField();	// 描画領域を貰う
+		shape.move(-field.x, -field.y);					// (0, 0)に移動させる
+
 		Image img;
 		MediaTracker mt = new MediaTracker(comp);
 		img = Toolkit.getDefaultToolkit().createImage(
@@ -78,6 +83,8 @@ public class ImageDrawer extends Drawer {
 		}
 		catch(InterruptedException e) {
 		}
+
+		shape.move(field.x, field.y);			// 元の場所に戻る
 
 		return img;
 	}
@@ -116,8 +123,8 @@ public class ImageDrawer extends Drawer {
 			drawImg = createTransparentImage(triangle);
 		}
 
-		MyPoint pt = triangle.getPoint(0);
-		g.drawImage(drawImg, (int)pt.getX(), (int)pt.getY(), null);
+		Rectangle2D.Double field = triangle.getDrawField();
+		g.drawImage(drawImg, (int)field.x, (int)field.y, null);
 	}
 
 

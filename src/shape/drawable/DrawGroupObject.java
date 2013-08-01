@@ -2,8 +2,8 @@ package shape.drawable;
 
 
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -42,15 +42,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 		}
 	}
 
-	@Override
-	public void setColor(Color color) {
-		// TODO 自動生成されたメソッド・スタブ
-		for(EditableShape item : objList){
-			// EditableShape を DrawableObjectとして扱う
-			DrawableObject drawable = (DrawableObject)item;
-			drawable.setColor(color);
-		}
-	}
+
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
@@ -94,6 +86,13 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 				item.show();
 			}
 		}
+	}
+
+
+	@Override
+	public Rectangle2D.Double getDrawField() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;		// とりあえず空を返す
 	}
 
 }
