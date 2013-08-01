@@ -15,6 +15,7 @@ import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.editable.EditableShape;
+import shape.editable.MyPoint;
 
 public class ImageDrawer extends Drawer {
 	private Image image;			// 元の画像
@@ -99,6 +100,8 @@ public class ImageDrawer extends Drawer {
 	public void draw(Graphics g, DrawOvalObject oval) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(drawImg == null){
+			oval.setWidth(image.getWidth(null));
+			oval.setHeight(image.getHeight(null));
 			drawImg = createTransparentImage(oval);
 		}
 
@@ -109,6 +112,8 @@ public class ImageDrawer extends Drawer {
 	public void draw(Graphics g, DrawRectangleObject rect) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(drawImg == null) {
+			rect.setWidth(image.getWidth(null));
+			rect.setHeight(image.getHeight(null));
 			drawImg = image;		// 長方形はそのまま
 		}
 
@@ -120,7 +125,20 @@ public class ImageDrawer extends Drawer {
 	public void draw(Graphics g, DrawTriangleObject triangle) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(drawImg == null) {
+			Rectangle2D.Double old_field = triangle.getDrawField();
+
+			// 新しい画像に合う座標を指定する
+			double width = image.getWidth(null);
+			double height = image.getHeight(null);
+			triangle.setPoint(0, new MyPoint(width / 2, 0.0));
+			triangle.setPoint(1, new MyPoint(0, height));
+			triangle.setPoint(2, new MyPoint(width, height / 2));
+
+			// 画像を三角形にくり抜く
 			drawImg = createTransparentImage(triangle);
+
+			// 昔の描画領域の左上の点に戻る
+			triangle.move(old_field.x, old_field.y);
 		}
 
 		Rectangle2D.Double field = triangle.getDrawField();
