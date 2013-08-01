@@ -93,6 +93,17 @@ public class Editor {
 				ec.command = CommandType.COLOR;
 			}
 		}
+		else if(ec.token[0].equals("factory") == true){
+			if(ec.token[1].equals("color")) {
+				ec.command = CommandType.FACTORY_COLOR;
+			}
+			else if(ec.token[1].equals("image")) {
+				ec.command = CommandType.FACTORY_IMAGE;
+			}
+			else {
+				ec.command = CommandType.FACTORY;
+			}
+		}
 		else if(ec.token.length == 3){
 			try{
 				// 第1引数を x に第2引数を y にDoubleとして読み込む
@@ -116,14 +127,6 @@ public class Editor {
 			else{
 				System.out.println("Not a command: " + ec.token[0]);
 				ec.command = CommandType.ERROR;
-			}
-		}
-		else if(ec.token[0].equals("factory") == true){
-			if(ec.token[1].equals("color")) {
-				ec.command = CommandType.FACTORY_COLOR;
-			}
-			else {
-				ec.command = CommandType.FACTORY;
 			}
 		}
 		else if(ec.token[0].equals("image")) {
@@ -411,6 +414,20 @@ public class Editor {
 						System.out.println(e);
 					}
 				}
+			}
+
+			break;
+		}
+
+		case FACTORY_IMAGE:
+		{
+			ImageDrawerSetter setter = new ImageDrawerSetter(ec.token[2]);
+
+			try {
+				setter.visiteDrawerPropaty(f.getDrawer());
+			}
+			catch (NoUsingPropatyException e) {
+				System.out.println(e);
 			}
 
 			break;

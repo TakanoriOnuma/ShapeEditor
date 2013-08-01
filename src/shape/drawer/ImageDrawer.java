@@ -44,6 +44,19 @@ public class ImageDrawer extends Drawer {
 		return img;
 	}
 
+	private Image copyImage(Image image) {
+		Image img;
+		MediaTracker mt = new MediaTracker(comp);
+		img = Toolkit.getDefaultToolkit().createImage(image.getSource());
+		mt.addImage(img, 0);
+		try{
+			mt.waitForID(0);
+		}
+		catch(InterruptedException e){
+		}
+		return img;
+	}
+
 	public String getFileName() {
 		return filename;
 	}
@@ -143,6 +156,15 @@ public class ImageDrawer extends Drawer {
 
 		Rectangle2D.Double field = triangle.getDrawField();
 		g.drawImage(drawImg, (int)field.x, (int)field.y, null);
+	}
+
+	@Override
+	public ImageDrawer clone() {
+		ImageDrawer imgDrawer = (ImageDrawer)super.clone();
+		imgDrawer.image = copyImage(this.image);
+		imgDrawer.drawImg = null;
+		imgDrawer.filename = new String(this.filename);
+		return imgDrawer;
 	}
 
 
