@@ -328,7 +328,7 @@ public class Editor {
 				b >= 0 && b <= 255) {
 					ColorDrawerSetter setter = new ColorDrawerSetter(new Color(r, g, b));
 					try{
-						setter.visiteDrawerPropaty(f.getDrawer());
+						setter.visitDrawerPropaty(f.getDrawer());
 					}
 					catch (NoUsingPropatyException e) {
 						System.out.println(e);
@@ -362,7 +362,7 @@ public class Editor {
 							DrawableObject obj = (DrawableObject)item;
 
 							try {
-								setter.visiteDrawerPropaty(obj.getDrawer());
+								setter.visitDrawerPropaty(obj.getDrawer());
 							}
 							catch(NoUsingPropatyException e) {
 								System.out.println(e);
@@ -386,7 +386,7 @@ public class Editor {
 					DrawableObject obj = (DrawableObject)item;
 
 					try {
-						getter.visiteDrawerPropaty(obj.getDrawer());
+						getter.visitDrawerPropaty(obj.getDrawer());
 						Color color = getter.getColor();
 						System.out.println("color(" + color.getRed() + ", " + color.getGreen() +
 								", " + color.getBlue() + ")");
@@ -408,7 +408,7 @@ public class Editor {
 					DrawableObject obj = (DrawableObject)item;		// 無理やりキャスト
 
 					try {
-						setter.visiteDrawerPropaty(obj.getDrawer());
+						setter.visitDrawerPropaty(obj.getDrawer());
 					}
 					catch (NoUsingPropatyException e) {
 						System.out.println(e);
@@ -424,7 +424,7 @@ public class Editor {
 			ImageDrawerSetter setter = new ImageDrawerSetter(ec.token[2]);
 
 			try {
-				setter.visiteDrawerPropaty(f.getDrawer());
+				setter.visitDrawerPropaty(f.getDrawer());
 			}
 			catch (NoUsingPropatyException e) {
 				System.out.println(e);
