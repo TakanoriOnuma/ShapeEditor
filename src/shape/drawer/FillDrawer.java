@@ -28,7 +28,7 @@ public class FillDrawer extends Drawer {
 	@Override
 	void accept(DrawerVisitor visitor) throws NoUsingPropatyException {
 		// TODO 自動生成されたメソッド・スタブ
-		visitor.visiteFillDrawer(this);
+		visitor.visitFillDrawer(this);
 	}
 
 	@Override

@@ -10,19 +10,19 @@ public class ColorDrawerGetter extends DrawerVisitor {
 	}
 
 	@Override
-	void visiteFillDrawer(FillDrawer fillDrawer) throws NoUsingPropatyException {
+	void visitFillDrawer(FillDrawer fillDrawer) throws NoUsingPropatyException {
 		// TODO 自動生成されたメソッド・スタブ
 		color = fillDrawer.getColor();
 	}
 
 	@Override
-	void visiteLineDrawer(LineDrawer lineDrawer) throws NoUsingPropatyException {
+	void visitLineDrawer(LineDrawer lineDrawer) throws NoUsingPropatyException {
 		// TODO 自動生成されたメソッド・スタブ
 		color = lineDrawer.getColor();
 	}
 
 	@Override
-	void visiteImageDrawer(ImageDrawer imageDrawer) throws NoUsingPropatyException {
+	void visitImageDrawer(ImageDrawer imageDrawer) throws NoUsingPropatyException {
 		// TODO 自動生成されたメソッド・スタブ
 		// 画像の情報は取得できなため例外を投げる
 		throw new NoUsingPropatyException("画像の情報は取得できません。");

@@ -6,7 +6,7 @@ public abstract class DrawerVisitor {
 	}
 
 	// 無名修飾子で同パッケージ内のみアクセス可能
-	abstract void visiteFillDrawer(FillDrawer fillDrawer) throws NoUsingPropatyException;
-	abstract void visiteLineDrawer(LineDrawer lineDrawer) throws NoUsingPropatyException;
-	abstract void visiteImageDrawer(ImageDrawer imageDrawer) throws NoUsingPropatyException;
+	abstract void visitFillDrawer(FillDrawer fillDrawer) throws NoUsingPropatyException;
+	abstract void visitLineDrawer(LineDrawer lineDrawer) throws NoUsingPropatyException;
+	abstract void visitImageDrawer(ImageDrawer imageDrawer) throws NoUsingPropatyException;
 }

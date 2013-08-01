@@ -93,7 +93,7 @@ public class ImageDrawer extends Drawer {
 	@Override
 	void accept(DrawerVisitor visitor) throws NoUsingPropatyException {
 		// TODO 自動生成されたメソッド・スタブ
-		visitor.visiteImageDrawer(this);
+		visitor.visitImageDrawer(this);
 	}
 
 	@Override
