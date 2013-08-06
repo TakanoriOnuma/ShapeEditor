@@ -48,6 +48,7 @@ public class DrawTriangleObject extends TriangleShape implements DrawableObject 
 		return max;
 	}
 
+	@Override
 	public void setDrawer(Drawer drawer){
 		this.drawer = drawer;
 	}

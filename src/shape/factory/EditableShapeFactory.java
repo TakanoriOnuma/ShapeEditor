@@ -21,6 +21,7 @@ public abstract class EditableShapeFactory {
 	}
 
 	public abstract Drawer getDrawer();
+	public abstract Drawer createDrawer();
 	public abstract EditableShape createShape(String[] token);
 	public abstract LinkedList<EditableShape> create();
 }

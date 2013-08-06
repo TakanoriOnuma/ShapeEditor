@@ -15,6 +15,7 @@ import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.drawer.ColorDrawerGetter;
 import shape.drawer.ColorDrawerSetter;
+import shape.drawer.Drawer;
 import shape.drawer.ImageDrawerSetter;
 import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
@@ -128,6 +129,9 @@ public class Editor {
 				System.out.println("Not a command: " + ec.token[0]);
 				ec.command = CommandType.ERROR;
 			}
+		}
+		else if(ec.token[0].equals("drawer")) {
+			ec.command = CommandType.DRAWER;
 		}
 		else if(ec.token[0].equals("image")) {
 			ec.command = CommandType.IMAGE;
@@ -433,12 +437,50 @@ public class Editor {
 			break;
 		}
 
+		case DRAWER:
+		{
+			Drawer drawer = getDrawer(ec.token[1]);
+
+			if(drawer != null) {
+				for(EditableShape item : shapeList) {
+					if(item.isSelected()) {
+						DrawableObject obj = (DrawableObject)item;		// 無理やりキャスト
+						obj.setDrawer(drawer.clone());					// それぞれにdrawerを作って渡す
+					}
+				}
+			}
+			else {
+				System.out.println("no such drawer: " + ec.token[1]);
+			}
+
+
+			break;
+		}
+
+
 		case ERROR:
 		default:
 			break;
 		}
 		myWindow.drawAll();
 		return goOn;
+	}
+
+
+	private static Drawer getDrawer(String str) {
+		Drawer drawer = null;
+
+		if(str.equals("fill")) {
+			drawer = FillObjectFactory.getInstance().createDrawer();
+		}
+		else if(str.equals("line")) {
+			drawer = LineObjectFactory.getInstance().createDrawer();
+		}
+		else if(str.equals("image")) {
+			drawer = ImageObjectFactory.getInstance().createDrawer();
+		}
+
+		return drawer;
 	}
 
 

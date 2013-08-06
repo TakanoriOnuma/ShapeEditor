@@ -20,6 +20,7 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 		this.drawer = drawer;
 	}
 
+	@Override
 	public void setDrawer(Drawer drawer){
 		this.drawer = drawer;
 	}

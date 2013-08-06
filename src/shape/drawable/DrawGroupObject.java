@@ -95,4 +95,12 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 		return null;		// とりあえず空を返す
 	}
 
+
+	// 一応オーバーライドするが、中身は何もしていない
+	@Override
+	public void setDrawer(Drawer drawer) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
 }

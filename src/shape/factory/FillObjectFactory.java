@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
+import shape.drawer.Drawer;
 import shape.drawer.FillDrawer;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
@@ -57,6 +58,12 @@ public class FillObjectFactory extends EditableShapeFactory {
 		shapeList.add(new DrawTriangleObject(new MyPoint(5, 5), new MyPoint(5, 25), new MyPoint(40, 5)));
 		shapeList.add(new DrawOvalObject(40, 10, 20, 10));
 		return shapeList;
+	}
+
+	@Override
+	public Drawer createDrawer() {
+		// TODO 自動生成されたメソッド・スタブ
+		return fillDrawer.clone();
 	}
 
 }

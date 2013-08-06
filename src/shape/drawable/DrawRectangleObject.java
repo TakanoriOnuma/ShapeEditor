@@ -20,6 +20,7 @@ public class DrawRectangleObject extends RectangleShape implements DrawableObjec
 		this.drawer = drawer;
 	}
 
+	@Override
 	public void setDrawer(Drawer drawer){
 		this.drawer = drawer;
 	}

@@ -10,4 +10,5 @@ public interface DrawableObject {
 
 	public Rectangle2D.Double getDrawField();	// 描画領域を返す
 	public Drawer getDrawer();					// Drawerを返す
+	public void setDrawer(Drawer drawer);		// Drawerをセットする
 }
