@@ -57,4 +57,12 @@ public class TriangleShape extends EditableShape {
 		System.out.println();
 	}
 
+	@Override
+	public String toString() {
+		String str = "Triangle ";
+		for(int i = 0; i < points.length; i++) {
+			str += String.format("%f %f", points[i].getX(), points[i].getY()) + " ";
+		}
+		return str;
+	}
 }

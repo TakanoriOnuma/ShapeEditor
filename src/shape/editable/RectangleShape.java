@@ -63,4 +63,8 @@ public class RectangleShape extends EditableShape {
 			x + "," + y + ") (" + (x + width) + ", " + (y + height) + ")");
 	}
 
+	@Override
+	public String toString() {
+		return "Rectangle " + String.format("%f %f %f %f", x, y, width, height);
+	}
 }

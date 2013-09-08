@@ -3,6 +3,8 @@ package editor;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
@@ -162,6 +164,12 @@ public class Editor {
 		else if(ec.token[0].equals("ungroup")){
 			ec.command = CommandType.UNGROUP;
 		}
+		else if(ec.token[0].equals("save")) {
+			ec.command = CommandType.SAVE;
+		}
+		else if(ec.token[0].equals("load")) {
+			ec.command = CommandType.LOAD;
+		}
 		else{
 			if(str.length() > 0){
 				System.out.println(str + ": Not a command!");
@@ -215,6 +223,7 @@ public class Editor {
 			break;
 
 		case DELETE:
+		{
 			it = shapeList.iterator();
 			while(it.hasNext()){
 				EditableShape item = it.next();
@@ -225,8 +234,10 @@ public class Editor {
 				}
 			}
 			break;
+		}
 
 		case FRONT:
+		{
 			it = shapeList.iterator();
 			while(it.hasNext()) {
 				EditableShape item = it.next();
@@ -237,8 +248,10 @@ public class Editor {
 			}
 			shapeList.addAll(0, addList);
 			break;
+		}
 
 		case BACK:
+		{
 			it = shapeList.iterator();
 			while(it.hasNext()) {
 				EditableShape item = it.next();
@@ -249,8 +262,10 @@ public class Editor {
 			}
 			shapeList.addAll(addList);
 			break;
+		}
 
 		case CREATE:
+		{
 			EditableShape shape = f.createShape(ec.token);
 			if(shape != null) {
 				((LinkedList<EditableShape>)shapeList).addFirst(shape);
@@ -259,6 +274,7 @@ public class Editor {
 				shape.show();
 			}
 			break;
+		}
 
 		case GROUP:
 			it = shapeList.iterator();
@@ -453,6 +469,26 @@ public class Editor {
 				System.out.println("no such drawer: " + ec.token[1]);
 			}
 
+
+			break;
+		}
+
+		case SAVE:
+		{
+			try {
+				File file = new File(ec.token[1]);
+				FileWriter fileWriter = new FileWriter(file);
+
+				for(EditableShape shape : shapeList) {
+					fileWriter.write(shape.toString() + "\r\n");
+				}
+
+				fileWriter.close();
+				System.out.println("Saveしました。");
+			}
+			catch(IOException e) {
+				System.out.println(e);
+			}
 
 			break;
 		}
