@@ -36,4 +36,9 @@ public class RoundRectangleShape extends EditableShape {
 				"(" + roundRect.getArcWidth() + ", " + roundRect.getArcHeight() + ")");
 	}
 
+	@Override
+	public String toString() {
+		return "RoundRectangle " + String.format("%f %f %f %f %f %f", roundRect.getX(), roundRect.getY(),
+				roundRect.getWidth(), roundRect.getHeight(), roundRect.getArcWidth(), roundRect.getArcHeight());
+	}
 }

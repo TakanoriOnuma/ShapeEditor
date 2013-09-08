@@ -12,9 +12,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawRoundRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.drawer.ColorDrawerGetter;
@@ -484,7 +486,7 @@ public class Editor {
 		case SAVE:
 		{
 			try {
-				File file = new File(ec.token[1]);
+				File file = new File(ec.token[1] + ".sav");
 				FileWriter fileWriter = new FileWriter(file);
 
 				for(EditableShape shape : shapeList) {
@@ -508,7 +510,7 @@ public class Editor {
 			try {
 				shapeList.clear();
 
-				File file = new File(ec.token[1]);
+				File file = new File(ec.token[1] + ".sav");
 				FileReader fileReader = new FileReader(file);
 				BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -526,7 +528,7 @@ public class Editor {
 							shape_values[i - 1] = Double.parseDouble(shape_data[i]);
 						}
 						catch(NumberFormatException e) {
-							System.out.println("値の変換が出来ませんでした。--");
+							System.out.println("値の変換が出来ませんでした。");
 							bufferedReader.close();
 							return false;		// 強制終了
 						}
@@ -541,7 +543,7 @@ public class Editor {
 								drawer_values[i - 1] = Integer.parseInt(drawer_data[i]);
 							}
 							catch(NumberFormatException e) {
-								System.out.println("値の変換が出来ませんでした。-");
+								System.out.println("値の変換が出来ませんでした。");
 								bufferedReader.close();
 								return false;		// 強制終了
 							}
@@ -578,6 +580,19 @@ public class Editor {
 						shapeList.add((EditableShape)new DrawOvalObject(shape_values[0],
 								shape_values[1], shape_values[2], shape_values[3], drawer));
 					}
+					else if(shape_data[0].equals("RoundRectangle")) {
+						shapeList.add((EditableShape)new DrawRoundRectangleObject(shape_values[0],
+								shape_values[1], shape_values[2], shape_values[3], shape_values[4],
+								shape_values[5], drawer));
+					}
+					else if(shape_data[0].equals("Arc")) {
+						shapeList.add((EditableShape)new DrawArcObject(shape_values[0], shape_values[1],
+								shape_values[2], shape_values[3], shape_values[4], shape_values[5],
+								(int)shape_values[6], drawer));
+					}
+					else {
+						System.out.println("そのような図形はありません。:" + shape_data[0]);
+					}
 
 
 
@@ -585,6 +600,9 @@ public class Editor {
 				}
 
 				bufferedReader.close();
+
+				System.out.println("Loadしました。");
+				show();
 			}
 			catch(IOException e) {
 				System.out.println(e);

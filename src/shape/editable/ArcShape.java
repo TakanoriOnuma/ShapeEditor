@@ -36,4 +36,10 @@ public class ArcShape extends EditableShape {
 				"(" + arc.getAngleStart() + ", " + arc.getAngleExtent() + ")");
 	}
 
+	@Override
+	public String toString() {
+		return "Arc " + String.format("%f %f %f %f %f %f %f", arc.getX(), arc.getY(),
+				arc.getWidth(), arc.getHeight(), arc.getAngleStart(), arc.getAngleExtent(),
+				(float)arc.getArcType());
+	}
 }
