@@ -8,7 +8,7 @@ import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.editable.MyPoint;
 
-public class FillDrawer implements Drawer {
+public class FillDrawer extends Drawer {
 	private Color color;
 
 	public FillDrawer(){
@@ -16,6 +16,19 @@ public class FillDrawer implements Drawer {
 	}
 	public FillDrawer(Color color){
 		this.color = color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	public Color getColor() {
+		return color;
+	}
+
+	@Override
+	void accept(DrawerVisitor visitor) throws NoUsingPropatyException {
+		// TODO 自動生成されたメソッド・スタブ
+		visitor.visitFillDrawer(this);
 	}
 
 	@Override
@@ -52,4 +65,10 @@ public class FillDrawer implements Drawer {
 		g.drawPolygon(xint, yint, 3);
 	}
 
+	@Override
+	public FillDrawer clone() {
+		FillDrawer fillDrawer = (FillDrawer)super.clone();
+		fillDrawer.setColor(new Color(this.color.getRGB()));
+		return fillDrawer;
+	}
 }

@@ -2,6 +2,7 @@ package shape.drawable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 
 import shape.drawer.Drawer;
 import shape.drawer.FillDrawer;
@@ -19,8 +20,14 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 		this.drawer = drawer;
 	}
 
+	@Override
 	public void setDrawer(Drawer drawer){
 		this.drawer = drawer;
+	}
+
+	@Override
+	public Drawer getDrawer() {
+		return drawer;
 	}
 
 	@Override
@@ -30,9 +37,11 @@ public class DrawOvalObject extends OvalShape implements DrawableObject {
 	}
 
 	@Override
-	public void setColor(Color color) {
+	public Rectangle2D.Double getDrawField() {
 		// TODO 自動生成されたメソッド・スタブ
-//		this.color = color;
+		return new Rectangle2D.Double(x, y, width, height);
 	}
+
+
 
 }

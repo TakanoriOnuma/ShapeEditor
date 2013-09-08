@@ -2,11 +2,12 @@ package shape.drawable;
 
 
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
+import shape.drawer.Drawer;
 import shape.editable.EditableShape;
 
 public class DrawGroupObject extends EditableShape implements DrawableObject {
@@ -24,6 +25,11 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 		return objList;
 	}
 
+	@Override
+	public Drawer getDrawer() {
+		return null;		// Compositeに対して何を返していいのかが分からない
+	}
+
 
 	@Override
 	public void draw(Graphics g) {
@@ -36,15 +42,7 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 		}
 	}
 
-	@Override
-	public void setColor(Color color) {
-		// TODO 自動生成されたメソッド・スタブ
-		for(EditableShape item : objList){
-			// EditableShape を DrawableObjectとして扱う
-			DrawableObject drawable = (DrawableObject)item;
-			drawable.setColor(color);
-		}
-	}
+
 
 	@Override
 	public boolean isIncluding(double xpos, double ypos) {
@@ -88,6 +86,21 @@ public class DrawGroupObject extends EditableShape implements DrawableObject {
 				item.show();
 			}
 		}
+	}
+
+
+	@Override
+	public Rectangle2D.Double getDrawField() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;		// とりあえず空を返す
+	}
+
+
+	// 一応オーバーライドするが、中身は何もしていない
+	@Override
+	public void setDrawer(Drawer drawer) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }

@@ -1,6 +1,7 @@
 package editor;
 
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,11 +12,18 @@ import java.util.List;
 import shape.drawable.DrawGroupObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
+import shape.drawable.DrawableObject;
+import shape.drawer.ColorDrawerGetter;
+import shape.drawer.ColorDrawerSetter;
+import shape.drawer.Drawer;
+import shape.drawer.ImageDrawerSetter;
+import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
 import shape.factory.EditableShapeFactory;
 import shape.factory.FillObjectFactory;
 import shape.factory.ImageObjectFactory;
+import shape.factory.LineObjectFactory;
 import window.DisplayWindow;
 
 public class Editor {
@@ -30,13 +38,14 @@ public class Editor {
 		BufferedReader input =
 				new BufferedReader(new InputStreamReader(System.in));
 
-		f = new FillObjectFactory();	// 始めは塗りつぶすFactoryにする
+		f = FillObjectFactory.getInstance();	// 始めは塗りつぶすFactoryにする
 
 		shapeList = f.create();			// 図形要素の配列を生成
 		show();							// 図形要素を順に表示
 		myWindow = new DisplayWindow((LinkedList<?>)shapeList);
 		myWindow.drawAll();
 
+		ImageObjectFactory.create(myWindow);	// あらかじめ作っておく
 
 		boolean goOn = true;
 		while(goOn){
@@ -80,6 +89,22 @@ public class Editor {
 		if(ec.token[0].equals("create") == true) {
 			ec.command = CommandType.CREATE;
 		}
+		else if(ec.token.length == 4){
+			if(ec.token[0].equals("color") == true) {
+				ec.command = CommandType.COLOR;
+			}
+		}
+		else if(ec.token[0].equals("factory") == true){
+			if(ec.token[1].equals("color")) {
+				ec.command = CommandType.FACTORY_COLOR;
+			}
+			else if(ec.token[1].equals("image")) {
+				ec.command = CommandType.FACTORY_IMAGE;
+			}
+			else {
+				ec.command = CommandType.FACTORY;
+			}
+		}
 		else if(ec.token.length == 3){
 			try{
 				// 第1引数を x に第2引数を y にDoubleとして読み込む
@@ -105,13 +130,15 @@ public class Editor {
 				ec.command = CommandType.ERROR;
 			}
 		}
-		else if(ec.token.length == 2){
-			if(ec.token[0].equals("factory") == true){
-				ec.command = CommandType.FACTORY;
-			}
-			else{
-				System.out.println("Not a command: " + ec.token[0]);
-				ec.command = CommandType.ERROR;
+		else if(ec.token[0].equals("drawer")) {
+			ec.command = CommandType.DRAWER;
+		}
+		else if(ec.token[0].equals("image")) {
+			ec.command = CommandType.IMAGE;
+		}
+		else if(ec.token[0].equals("info")) {
+			if(ec.token[1].equals("color")) {
+				ec.command = CommandType.INFO_COLOR;
 			}
 		}
 		else if(ec.token[0].equals("delete") == true) {
@@ -268,7 +295,13 @@ public class Editor {
 		case FACTORY:
 		{
 			if(ec.token[1].equals("ImageObject") == true) {
-				f = new ImageObjectFactory(myWindow);
+				f = ImageObjectFactory.getInstance();
+			}
+			else if(ec.token[1].equals("LineObject")) {
+				f = LineObjectFactory.getInstance();
+			}
+			else if(ec.token[1].equals("FillObject")) {
+				f = FillObjectFactory.getInstance();
 			}
 			else {
 				EditableShapeFactory factory = EditableShapeFactory.getFactory(ec.token[1]);
@@ -280,12 +313,174 @@ public class Editor {
 			break;
 		}
 
+		case FACTORY_COLOR:
+		{
+			int r, g, b;
+			try {
+				r = Integer.parseInt(ec.token[2]);
+				g = Integer.parseInt(ec.token[3]);
+				b = Integer.parseInt(ec.token[4]);
+			}
+			// 変換に失敗した場合
+			catch(NumberFormatException e) {
+				System.out.println("Int values needed: " + ec.token[0]);
+				break;
+			}
+
+			if(r >= 0 && r <= 255 &&
+				g >= 0 && g <= 255 &&
+				b >= 0 && b <= 255) {
+					ColorDrawerSetter setter = new ColorDrawerSetter(new Color(r, g, b));
+					try{
+						setter.visitDrawerPropaty(f.getDrawer());
+					}
+					catch (NoUsingPropatyException e) {
+						System.out.println(e);
+					}
+			}
+
+			break;
+		}
+
+		case COLOR:
+		{
+			int r, g, b;
+			try {
+				r = Integer.parseInt(ec.token[1]);
+				g = Integer.parseInt(ec.token[2]);
+				b = Integer.parseInt(ec.token[3]);
+			}
+			// 変換に失敗した場合
+			catch(NumberFormatException e) {
+				System.out.println("Int values needed: " + ec.token[0]);
+				break;
+			}
+
+			if(r >= 0 && r <= 255 &&
+				g >= 0 && g <= 255 &&
+				b >= 0 && b <= 255) {
+					ColorDrawerSetter setter = new ColorDrawerSetter(new Color(r, g, b));
+					for(EditableShape item : shapeList) {
+						if(item.isSelected()) {
+							// DrawableObjectに無理やりキャスト
+							DrawableObject obj = (DrawableObject)item;
+
+							try {
+								setter.visitDrawerPropaty(obj.getDrawer());
+							}
+							catch(NoUsingPropatyException e) {
+								System.out.println(e);
+							}
+						}
+					}
+			}
+
+			break;
+		}
+
+		case INFO_COLOR:
+		{
+			ColorDrawerGetter getter = new ColorDrawerGetter();
+			for(EditableShape item : shapeList) {
+				if(item.isSelected()) {
+					item.show();
+					System.out.print(":");
+
+					// DrawableObjectに無理やりキャスト
+					DrawableObject obj = (DrawableObject)item;
+
+					try {
+						getter.visitDrawerPropaty(obj.getDrawer());
+						Color color = getter.getColor();
+						System.out.println("color(" + color.getRed() + ", " + color.getGreen() +
+								", " + color.getBlue() + ")");
+					}
+					catch(NoUsingPropatyException e) {
+						System.out.println(e);
+					}
+				}
+			}
+
+			break;
+		}
+
+		case IMAGE:
+		{
+			ImageDrawerSetter setter = new ImageDrawerSetter(ec.token[1]);
+			for(EditableShape item : shapeList) {
+				if(item.isSelected()) {
+					DrawableObject obj = (DrawableObject)item;		// 無理やりキャスト
+
+					try {
+						setter.visitDrawerPropaty(obj.getDrawer());
+					}
+					catch (NoUsingPropatyException e) {
+						System.out.println(e);
+					}
+				}
+			}
+
+			break;
+		}
+
+		case FACTORY_IMAGE:
+		{
+			ImageDrawerSetter setter = new ImageDrawerSetter(ec.token[2]);
+
+			try {
+				setter.visitDrawerPropaty(f.getDrawer());
+			}
+			catch (NoUsingPropatyException e) {
+				System.out.println(e);
+			}
+
+			break;
+		}
+
+		case DRAWER:
+		{
+			Drawer drawer = getDrawer(ec.token[1]);
+
+			if(drawer != null) {
+				for(EditableShape item : shapeList) {
+					if(item.isSelected()) {
+						DrawableObject obj = (DrawableObject)item;		// 無理やりキャスト
+						obj.setDrawer(drawer.clone());					// それぞれにdrawerを作って渡す
+					}
+				}
+			}
+			else {
+				System.out.println("no such drawer: " + ec.token[1]);
+			}
+
+
+			break;
+		}
+
+
 		case ERROR:
 		default:
 			break;
 		}
 		myWindow.drawAll();
 		return goOn;
+	}
+
+
+	private static Drawer getDrawer(String str) {
+		Drawer drawer = null;
+
+		if(str.equals("fill")) {
+			drawer = FillObjectFactory.getInstance().createDrawer();
+		}
+		else if(str.equals("line")) {
+			drawer = LineObjectFactory.getInstance().createDrawer();
+		}
+		else if(str.equals("image")) {
+			drawer = ImageObjectFactory.getInstance().createDrawer();
+		}
+
+		return drawer;
 	}
 
 
