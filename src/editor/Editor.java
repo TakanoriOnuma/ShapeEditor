@@ -170,6 +170,9 @@ public class Editor {
 		else if(ec.token[0].equals("load")) {
 			ec.command = CommandType.LOAD;
 		}
+		else if(ec.token[0].equals("clear")) {
+			ec.command = CommandType.CLEAR;
+		}
 		else{
 			if(str.length() > 0){
 				System.out.println(str + ": Not a command!");
@@ -492,6 +495,13 @@ public class Editor {
 
 			break;
 		}
+
+
+
+
+		case CLEAR:
+			shapeList.clear();
+			break;
 
 
 		case ERROR:
