@@ -4,6 +4,7 @@ package editor;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import shape.drawable.DrawGroupObject;
+import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
@@ -496,7 +498,57 @@ public class Editor {
 			break;
 		}
 
+		case LOAD:
+		{
+			try {
+				shapeList.clear();
 
+				File file = new File(ec.token[1]);
+				FileReader fileReader = new FileReader(file);
+				BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+				String line = bufferedReader.readLine();
+				while(line != null) {
+					String[] words = line.split(" ");
+					double[] values = new double[words.length - 1];
+
+					for(int i = 1; i < words.length; i++) {
+						try {
+							values[i - 1] = Double.parseDouble(words[i]);
+						}
+						catch(NumberFormatException e) {
+							System.out.println("値の変換が出来ませんでした。");
+							bufferedReader.close();
+							return false;		// 強制終了
+						}
+					}
+
+					if(words[0].equals("Rectangle")) {
+						shapeList.add((EditableShape)new DrawRectangleObject(values[0],
+								values[1], values[2], values[3]));
+					}
+					else if(words[0].equals("Triangle")) {
+						shapeList.add((EditableShape)new DrawTriangleObject(new MyPoint(values[0], values[1]),
+								new MyPoint(values[2], values[3]), new MyPoint(values[4], values[5])));
+					}
+					else if(words[0].equals("Oval")) {
+						shapeList.add((EditableShape)new DrawOvalObject(values[0],
+								values[1], values[2], values[3]));
+					}
+
+
+
+					line = bufferedReader.readLine();
+				}
+
+				bufferedReader.close();
+			}
+			catch(IOException e) {
+				System.out.println(e);
+			}
+
+			break;
+		}
 
 
 		case CLEAR:
