@@ -1,10 +1,13 @@
 package shape.factory;
 
 import java.awt.Component;
+import java.awt.geom.Arc2D;
 import java.util.LinkedList;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawRoundRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawer.Drawer;
 import shape.drawer.ImageDrawer;
@@ -50,8 +53,15 @@ public class ImageObjectFactory extends EditableShapeFactory {
 			else if(token[1].equals("Rectangle") == true){
 				shape = new DrawRectangleObject(0, 0, width, height, imgDrawer.clone());
 			}
+			else if(token[1].equals("RoundRectangle") == true) {
+				shape = new DrawRoundRectangleObject(0, 0, width, height,
+							width / 3, height / 3, imgDrawer.clone());
+			}
 			else if(token[1].equals("Oval") == true){
 				shape = new DrawOvalObject(0, 0, width, height, imgDrawer.clone());
+			}
+			else if(token[1].equals("Arc") == true) {
+				shape = new DrawArcObject(0, 0, width, height, 20, 300, Arc2D.PIE, imgDrawer.clone());
 			}
 		}
 		return shape;

@@ -2,8 +2,10 @@ package shape.drawer;
 
 import java.awt.Graphics;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawRoundRectangleObject;
 import shape.drawable.DrawTriangleObject;
 
 public abstract class Drawer implements Cloneable {
@@ -13,7 +15,9 @@ public abstract class Drawer implements Cloneable {
 //	public void draw(Graphics g, DrawableObject drawableObject);
 	public abstract void draw(Graphics g, DrawOvalObject oval);
 	public abstract void draw(Graphics g, DrawRectangleObject rect);
+	public abstract void draw(Graphics g, DrawRoundRectangleObject roundRect);
 	public abstract void draw(Graphics g, DrawTriangleObject triangle);
+	public abstract void draw(Graphics g, DrawArcObject arc);
 
 
 	@Override

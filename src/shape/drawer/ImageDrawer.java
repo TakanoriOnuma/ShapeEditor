@@ -10,8 +10,10 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.RGBImageFilter;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawRoundRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.editable.EditableShape;
@@ -135,6 +137,22 @@ public class ImageDrawer extends Drawer {
 	}
 
 	@Override
+	public void draw(Graphics g, DrawRoundRectangleObject roundRect) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(drawImg == null) {
+			roundRect.getRoundRect().width = image.getWidth(null);
+			roundRect.getRoundRect().height = image.getHeight(null);
+			roundRect.getRoundRect().arcwidth = roundRect.getRoundRect().width / 2;
+			roundRect.getRoundRect().archeight = roundRect.getRoundRect().height / 2;
+
+			drawImg = createTransparentImage(roundRect);
+		}
+
+		g.drawImage(drawImg, (int)roundRect.getRoundRect().getX(),
+				(int)roundRect.getRoundRect().getY(), null);
+	}
+
+	@Override
 	public void draw(Graphics g, DrawTriangleObject triangle) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(drawImg == null) {
@@ -156,6 +174,21 @@ public class ImageDrawer extends Drawer {
 
 		Rectangle2D.Double field = triangle.getDrawField();
 		g.drawImage(drawImg, (int)field.x, (int)field.y, null);
+	}
+
+	@Override
+	public void draw(Graphics g, DrawArcObject arc) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(drawImg == null) {
+			arc.getArc().width = image.getWidth(null);
+			arc.getArc().height = image.getHeight(null);
+			arc.getArc().start = 20;
+			arc.getArc().extent = 300;
+
+			drawImg = createTransparentImage(arc);
+		}
+
+		g.drawImage(drawImg, (int)arc.getArc().getX(), (int)arc.getArc().getY(), null);
 	}
 
 	@Override
