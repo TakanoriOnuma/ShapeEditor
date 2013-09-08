@@ -1,8 +1,10 @@
 package shape.factory;
 
 import java.awt.Color;
+import java.awt.geom.Arc2D;
 import java.util.LinkedList;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawRoundRectangleObject;
@@ -49,6 +51,9 @@ public class LineObjectFactory extends EditableShapeFactory {
 			}
 			else if(token[1].equals("Oval") == true){
 				shape = new DrawOvalObject(0, 0, 20, 10, lineDrawer.clone());
+			}
+			else if(token[1].equals("Arc") == true) {
+				shape = new DrawArcObject(0, 0, 20, 20, 20, 300, Arc2D.PIE, lineDrawer.clone());
 			}
 		}
 		return shape;

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawRoundRectangleObject;
@@ -79,10 +80,21 @@ public class FillDrawer extends Drawer {
 	}
 
 	@Override
+	public void draw(Graphics g, DrawArcObject arc) {
+		// TODO 自動生成されたメソッド・スタブ
+		Graphics2D graphics2D = (Graphics2D)g;
+		graphics2D.setColor(color);
+		graphics2D.fill(arc.getArc());
+		graphics2D.setColor(Color.black);
+		graphics2D.draw(arc.getArc());
+	}
+
+	@Override
 	public FillDrawer clone() {
 		FillDrawer fillDrawer = (FillDrawer)super.clone();
 		fillDrawer.setColor(new Color(this.color.getRGB()));
 		return fillDrawer;
 	}
+
 
 }

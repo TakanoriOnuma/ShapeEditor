@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawRoundRectangleObject;
@@ -69,6 +70,13 @@ public class LineDrawer extends Drawer {
 		g.drawPolygon(xint, yint, 3);
 	}
 
+	@Override
+	public void draw(Graphics g, DrawArcObject arc) {
+		// TODO 自動生成されたメソッド・スタブ
+		Graphics2D graphics2D = (Graphics2D)g;
+		graphics2D.setColor(color);
+		graphics2D.draw(arc.getArc());
+	}
 
 	@Override
 	public LineDrawer clone() {
@@ -76,5 +84,6 @@ public class LineDrawer extends Drawer {
 		lineDrawer.setColor(new Color(this.color.getRGB()));
 		return lineDrawer;
 	}
+
 
 }

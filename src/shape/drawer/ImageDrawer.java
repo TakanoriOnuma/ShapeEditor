@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.RGBImageFilter;
 
+import shape.drawable.DrawArcObject;
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
 import shape.drawable.DrawRoundRectangleObject;
@@ -176,6 +177,21 @@ public class ImageDrawer extends Drawer {
 	}
 
 	@Override
+	public void draw(Graphics g, DrawArcObject arc) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(drawImg == null) {
+			arc.getArc().width = image.getWidth(null);
+			arc.getArc().height = image.getHeight(null);
+			arc.getArc().start = 20;
+			arc.getArc().extent = 300;
+
+			drawImg = createTransparentImage(arc);
+		}
+
+		g.drawImage(drawImg, (int)arc.getArc().getX(), (int)arc.getArc().getY(), null);
+	}
+
+	@Override
 	public ImageDrawer clone() {
 		ImageDrawer imgDrawer = (ImageDrawer)super.clone();
 		imgDrawer.image = copyImage(this.image);
@@ -206,8 +222,6 @@ public class ImageDrawer extends Drawer {
 			return 0;
 		}
 	}
-
-
 
 
 }
