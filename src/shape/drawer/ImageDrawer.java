@@ -12,6 +12,7 @@ import java.awt.image.RGBImageFilter;
 
 import shape.drawable.DrawOvalObject;
 import shape.drawable.DrawRectangleObject;
+import shape.drawable.DrawRoundRectangleObject;
 import shape.drawable.DrawTriangleObject;
 import shape.drawable.DrawableObject;
 import shape.editable.EditableShape;
@@ -135,6 +136,22 @@ public class ImageDrawer extends Drawer {
 	}
 
 	@Override
+	public void draw(Graphics g, DrawRoundRectangleObject roundRect) {
+		// TODO 自動生成されたメソッド・スタブ
+		if(drawImg == null) {
+			roundRect.getRoundRect().width = image.getWidth(null);
+			roundRect.getRoundRect().height = image.getHeight(null);
+			roundRect.getRoundRect().arcwidth = roundRect.getRoundRect().width / 2;
+			roundRect.getRoundRect().archeight = roundRect.getRoundRect().height / 2;
+
+			drawImg = createTransparentImage(roundRect);
+		}
+
+		g.drawImage(drawImg, (int)roundRect.getRoundRect().getX(),
+				(int)roundRect.getRoundRect().getY(), null);
+	}
+
+	@Override
 	public void draw(Graphics g, DrawTriangleObject triangle) {
 		// TODO 自動生成されたメソッド・スタブ
 		if(drawImg == null) {
@@ -189,6 +206,8 @@ public class ImageDrawer extends Drawer {
 			return 0;
 		}
 	}
+
+
 
 
 }
