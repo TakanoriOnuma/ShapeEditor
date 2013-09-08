@@ -200,6 +200,11 @@ public class ImageDrawer extends Drawer {
 		return imgDrawer;
 	}
 
+	@Override
+	public String toString() {
+		return "image " + filename;
+	}
+
 
 	/**
 	 * EditableShape領域内のみ表示させるフィルター

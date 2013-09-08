@@ -85,5 +85,9 @@ public class LineDrawer extends Drawer {
 		return lineDrawer;
 	}
 
-
+	@Override
+	public String toString() {
+		return "line " + String.format("%d %d %d %d",
+				color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+	}
 }

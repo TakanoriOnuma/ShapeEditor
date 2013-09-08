@@ -20,7 +20,10 @@ import shape.drawable.DrawableObject;
 import shape.drawer.ColorDrawerGetter;
 import shape.drawer.ColorDrawerSetter;
 import shape.drawer.Drawer;
+import shape.drawer.FillDrawer;
+import shape.drawer.ImageDrawer;
 import shape.drawer.ImageDrawerSetter;
+import shape.drawer.LineDrawer;
 import shape.drawer.NoUsingPropatyException;
 import shape.editable.EditableShape;
 import shape.editable.MyPoint;
@@ -485,7 +488,9 @@ public class Editor {
 				FileWriter fileWriter = new FileWriter(file);
 
 				for(EditableShape shape : shapeList) {
-					fileWriter.write(shape.toString() + "\r\n");
+					String inpStr = shape.toString() + "/";
+					inpStr += ((DrawableObject)shape).getDrawer().toString();
+					fileWriter.write(inpStr + "\r\n");
 				}
 
 				fileWriter.close();
@@ -509,31 +514,69 @@ public class Editor {
 
 				String line = bufferedReader.readLine();
 				while(line != null) {
-					String[] words = line.split(" ");
-					double[] values = new double[words.length - 1];
+					String[] info = line.split("/");
+					String[] shape_data = info[0].split(" ");
+					String[] drawer_data = info[1].split(" ");
+					double[] shape_values = new double[shape_data.length - 1];
+					int[] drawer_values = new int[drawer_data.length - 1];
+					String filename = "";
 
-					for(int i = 1; i < words.length; i++) {
+					for(int i = 1; i < shape_data.length; i++) {
 						try {
-							values[i - 1] = Double.parseDouble(words[i]);
+							shape_values[i - 1] = Double.parseDouble(shape_data[i]);
 						}
 						catch(NumberFormatException e) {
-							System.out.println("値の変換が出来ませんでした。");
+							System.out.println("値の変換が出来ませんでした。--");
 							bufferedReader.close();
 							return false;		// 強制終了
 						}
 					}
 
-					if(words[0].equals("Rectangle")) {
-						shapeList.add((EditableShape)new DrawRectangleObject(values[0],
-								values[1], values[2], values[3]));
+					if(drawer_data[0].equals("image")) {
+						filename = drawer_data[1];
 					}
-					else if(words[0].equals("Triangle")) {
-						shapeList.add((EditableShape)new DrawTriangleObject(new MyPoint(values[0], values[1]),
-								new MyPoint(values[2], values[3]), new MyPoint(values[4], values[5])));
+					else {
+						for(int i = 1; i < drawer_data.length; i++) {
+							try {
+								drawer_values[i - 1] = Integer.parseInt(drawer_data[i]);
+							}
+							catch(NumberFormatException e) {
+								System.out.println("値の変換が出来ませんでした。-");
+								bufferedReader.close();
+								return false;		// 強制終了
+							}
+						}
 					}
-					else if(words[0].equals("Oval")) {
-						shapeList.add((EditableShape)new DrawOvalObject(values[0],
-								values[1], values[2], values[3]));
+
+					Drawer drawer;
+
+					if(drawer_data[0].equals("fill")) {
+						drawer = new FillDrawer(new Color(drawer_values[0], drawer_values[1], drawer_values[2], drawer_values[3]));
+					}
+					else if(drawer_data[0].equals("line")) {
+						drawer = new LineDrawer(new Color(drawer_values[0], drawer_values[1], drawer_values[2], drawer_values[3]));
+					}
+					else if(drawer_data[0].equals("image")) {
+						drawer = new ImageDrawer(filename, myWindow);
+					}
+					else {
+						System.out.println("そのようなdrawerはありません。:" + drawer_data[0]);
+						bufferedReader.close();
+						return false;			// 強制終了
+					}
+
+					if(shape_data[0].equals("Rectangle")) {
+						shapeList.add((EditableShape)new DrawRectangleObject(shape_values[0],
+								shape_values[1], shape_values[2], shape_values[3], drawer));
+					}
+					else if(shape_data[0].equals("Triangle")) {
+						shapeList.add((EditableShape)new DrawTriangleObject(new MyPoint(shape_values[0], shape_values[1]),
+								new MyPoint(shape_values[2], shape_values[3]), new MyPoint(shape_values[4], shape_values[5]),
+								drawer));
+					}
+					else if(shape_data[0].equals("Oval")) {
+						shapeList.add((EditableShape)new DrawOvalObject(shape_values[0],
+								shape_values[1], shape_values[2], shape_values[3], drawer));
 					}
 
 

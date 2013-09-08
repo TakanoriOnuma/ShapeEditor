@@ -97,4 +97,9 @@ public class FillDrawer extends Drawer {
 	}
 
 
+	@Override
+	public String toString() {
+		return "fill " + String.format("%d %d %d %d",
+				color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+	}
 }
